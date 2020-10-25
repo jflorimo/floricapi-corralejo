@@ -10,7 +10,7 @@
   },
   "contributors": [
     {
-      "name": "Florilabo Team",
+      "name": "Florilab Team",
       "url": ""
     }
   ],
@@ -19,7 +19,7 @@
     "url": ""
   },
   "homepage": "",
-  "copyright": "Copyright 2020 florilabo jflorimo.",
+  "copyright": "Copyright 2020 florilab jflorimo.",
   "license": "MIT",
   "scripts": {
     "serve": "vue-cli-service serve",
