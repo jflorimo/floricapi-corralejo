@@ -3,7 +3,7 @@
     fixed 
     :minimize="minimize"
     :show="show"
-    @update:show="(value) => $store.commit('set', ['sidebarShow', value])"
+    @update:show="(value) => $store.commit('coreui/set', ['sidebarShow', value])"
   >
     <CSidebarBrand class="d-md-down-none" to="/">
       <CIcon 
