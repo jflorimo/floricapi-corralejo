@@ -12,5 +12,6 @@ module.exports = {
   ],
   devServer: {
       proxy: 'http://localhost/',
+      clientLogLevel: 'error',
   }
 }
