@@ -1,12 +1,11 @@
 <template>
   <div>
-    <CCard class="card-accent-dark" v-if="market_list">
+    <CCard v-if="market_list">
       <CCardHeader class="text-center font-weight-bolder">
         Récapitulatif des marchés
       </CCardHeader>
-      <CCardBody>
+      <CCardBody class="px-0 mx-0">
         <CDataTable 
-          class="table"
           :items="market_list"
           :fields="tableFields"
           head-color="light"
@@ -30,10 +29,6 @@
           </template>
         </CDataTable>
       </CCardBody>
-
-      <CCardFooter>
-        Standard Footer.
-      </CCardFooter>
     </CCard>
   </div>
 </template>
