@@ -1,14 +1,14 @@
 <template>
   <div>
     <CCard v-if="market_list">
-      <CCardHeader class="text-center font-weight-bolder">
+      <CCardHeader class="text-center font-weight-bolder border-0">
         Récapitulatif des marchés
       </CCardHeader>
       <CCardBody class="px-0 mx-0">
-        <CDataTable 
+        <CDataTable
+          class="table mb-0 px-0"
           :items="market_list"
           :fields="tableFields"
-          head-color="light"
           hover>
           <template #short_name="{item}">
             <td>
@@ -23,7 +23,7 @@
 
           </template>
           <template #chart="{item}">
-            <td style="padding:0px">
+            <td>
               <TinyGraph v-bind:marketId="item.id"/>
             </td>
           </template>
