@@ -2,7 +2,7 @@
   <div>
     <CCard v-if="market_list">
       <CCardHeader class="text-center font-weight-bolder border-0">
-        Récapitulatif des marchés
+        {{ $tc('market', 0) }}
       </CCardHeader>
       <CCardBody class="px-0 mx-0">
         <CDataTable
@@ -12,8 +12,9 @@
           hover>
           <template #short_name="{item}">
             <td>
-              <CIcon :content="formatFlagCode(item.country_code)"/> 
+              <Flag v-bind:country_code="item.country_code"/>
               {{ item.short_name }}
+              
             </td>
           </template>
           <template #time="{item}">
@@ -29,21 +30,23 @@
           </template>
         </CDataTable>
       </CCardBody>
+
     </CCard>
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex'
-import { flagSet } from '@coreui/icons'
 import { Clock } from '@/views/capi/Clock'
 import { TinyGraph } from '@/views/capi/TinyGraph'
+import { Flag } from '@/views/capi/Flag'
 
 export default { 
   name: 'Home',
   components: {
     Clock,
     TinyGraph,
+    Flag,
   },
   data () { 
     return { 
@@ -56,7 +59,6 @@ export default {
         { key: 'change', label: 'change (24h)' },
         { key: 'chart', label: 'price (7d)' }
       ],
-      flags: flagSet,
     } 
   },
 
@@ -66,10 +68,6 @@ export default {
   },
 
   methods: {
-    formatFlagCode(str) {
-      if (str != null)
-        return this.flags["cif" + str.charAt(0).toUpperCase() + str.slice(1)]
-    },   
   },
 
   created() {
