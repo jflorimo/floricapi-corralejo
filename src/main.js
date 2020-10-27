@@ -5,6 +5,7 @@ import router from './router'
 import CoreuiVue from '@coreui/vue'
 import { iconsSet as icons } from './assets/icons/icons.js'
 import store from './store'
+import i18n from './i18n'
 
 Vue.config.performance = true
 Vue.use(CoreuiVue)
@@ -16,6 +17,8 @@ new Vue({
   store,
   icons,
   template: '<App/>',
+  i18n,
+
   components: {
     App
   }

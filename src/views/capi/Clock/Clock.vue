@@ -1,5 +1,5 @@
 <template>
-    <p class="capi-clock">{{ time }} <CIcon :style="getMarketColor()" :content="clockIcon"/></p>   
+  <p class="capi-clock">{{ time }} <CIcon :style="getMarketColor()" :content="clockIcon"/></p>   
 </template>
 
 <script>

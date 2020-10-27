@@ -29,18 +29,24 @@
           Actions
         </CHeaderNavLink>
       </CHeaderNavItem>
+
     </CHeaderNav>
+    <LocaleSwitcher class="c-header-nav px-3"/>
+
 
   </CHeader>
 </template>
 
 <script>
 import TheHeaderDropdownAccnt from './TheHeaderDropdownAccnt'
+import { LocaleSwitcher } from '@/views/capi/LocaleSwitcher'
+
 
 export default {
   name: 'TheHeader',
   components: {
-    TheHeaderDropdownAccnt
+    TheHeaderDropdownAccnt,
+    LocaleSwitcher,
   }
 }
 </script>
