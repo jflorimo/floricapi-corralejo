@@ -9,16 +9,16 @@ export default {
 	name: 'Flag',
 	props: {country_code: String},
 	data () {
-  	return {
+  return {
 			flags: flagSet,
     }
   },
   methods: {
     formatFlagCode(str) {
-    	console.log(this.flags)
-    	console.log(str)
+    console.log(this.flags)
+    console.log(str)
 
-    	if (str === "en") str = "us"
+    if (str === "en") str = "us"
       if (str != null)
         return this.flags["cif" + str.charAt(0).toUpperCase() + str.slice(1)]
       else

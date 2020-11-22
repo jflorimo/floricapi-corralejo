@@ -4,7 +4,7 @@
       light
     >
         <CDropdownItem v-for="locale in locales" :key="locale" @click="switchLocale(locale)">
-        	<Flag v-bind:country_code="locale" class="mr-1"/>{{locale}} 
+          <Flag v-bind:country_code="locale" class="mr-1"/>{{locale}} 
         </CDropdownItem>
     </CDropdown>
 </template>
@@ -23,7 +23,7 @@ export default {
       }
     },
     getCurrentLocale() {
-    	return this.$i18n.locale;
+      return this.$i18n.locale;
     }
   },
   data() {
