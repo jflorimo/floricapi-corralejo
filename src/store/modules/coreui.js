@@ -1,8 +1,6 @@
 const state = {
   sidebarShow: 'responsive',
-  sidebarMinimize: false,
-  test: 'le_GROS_POPO',
-  test2: 'LE_POPOPOPOPO',
+  sidebarMinimize: true,
 }
 
 const mutations = {

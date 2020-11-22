@@ -17,11 +17,13 @@
               
             </td>
           </template>
+          <template #currency="{item}">
+            <td>{{ item.current_price +" "+ item.currency.symbol }}</td>
+          </template>
           <template #time="{item}">
             <td>
               <Clock v-bind:timezone="item.timezone"/>
             </td>
-
           </template>
           <template #chart="{item}">
             <td>
@@ -52,19 +54,17 @@ export default {
     return { 
       tableFields: [
         { key: 'short_name', label: 'short_name'},
-        { key: 'symbol', label: 'symbol' },
-        { key: 'timezone', label: 'timezone' },
-        { key: 'currency', label: 'currency' },
-        { key: 'time', label: 'time' },
+        { key: 'symbol', label: '' },
+        { key: 'currency', label: ''},
         { key: 'change', label: 'change (24h)' },
-        { key: 'chart', label: 'price (7d)' }
+        { key: 'chart', label: 'price (7d)' },
+        { key: 'time', label: 'time' },
       ],
     } 
   },
 
   computed: { 
     ...mapState('capi', ['market_list', 'market_last_7_points']),
-    ...mapState('coreui', ['test', 'test2']),
   },
 
   methods: {
