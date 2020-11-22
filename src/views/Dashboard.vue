@@ -9,6 +9,7 @@
           class="table mb-0 px-0"
           :items="market_list"
           :fields="tableFields"
+          :sorter="{ external: true, resetable: true }"
           hover>
           <template #short_name="{item}">
             <td>
@@ -17,8 +18,8 @@
               
             </td>
           </template>
-          <template #currency="{item}">
-            <td>{{ item.current_price +" "+ item.currency.symbol }}</td>
+          <template #price="{item}" class=".d-none .d-sm-block">
+            <td>{{ Math.round(item.current_price) +""+ item.currency.symbol }}</td>
           </template>
           <template #time="{item}">
             <td>
@@ -53,11 +54,10 @@ export default {
   data () { 
     return { 
       tableFields: [
-        { key: 'short_name', label: 'short_name'},
-        { key: 'symbol', label: '' },
-        { key: 'currency', label: ''},
-        { key: 'change', label: 'change (24h)' },
-        { key: 'chart', label: 'price (7d)' },
+        { key: 'short_name', label: 'Name'},
+        { key: 'price', label: 'price'},
+        { key: 'change', label: '24h' },
+        { key: 'chart', label: '7d' },
         { key: 'time', label: 'time' },
       ],
     } 
