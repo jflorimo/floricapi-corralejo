@@ -38,14 +38,12 @@
 </template>
 
 <script>
-import TheHeaderDropdownAccnt from './TheHeaderDropdownAccnt'
 import { LocaleSwitcher } from '@/views/capi/LocaleSwitcher'
 
 
 export default {
   name: 'TheHeader',
   components: {
-    TheHeaderDropdownAccnt,
     LocaleSwitcher,
   }
 }

@@ -5,31 +5,39 @@
         {{ $tc('market', 0) }}
       </CCardHeader>
       <CCardBody class="px-0 mx-0">
-        <CDataTable
-          class="table mb-0 px-0"
-          :items="market_list"
-          :fields="tableFields"
-          hover>
-          <template #short_name="{item}">
-            <td>
-              <Flag v-bind:country_code="item.country_code"/>
-              {{ item.short_name }}
-              
-            </td>
-          </template>
-          <template #time="{item}">
-            <td>
-              <Clock v-bind:timezone="item.timezone"/>
-            </td>
+      <bTable
+        :data="market_list"
+        :columns="columns"
+      >
+        <b-table-column label="name" v-slot="item">
+            <Flag v-bind:country_code="item.row.country_code"/> {{ item.row.short_name }}
+        </b-table-column>
 
-          </template>
-          <template #chart="{item}">
-            <td>
-              <TinyGraph v-bind:marketId="item.id"/>
-            </td>
-          </template>
-        </CDataTable>
+        <b-table-column label="price" width="40" v-slot="item">
+            {{ Math.round(item.row.current_price) +""+ item.row.currency.symbol }}
+        </b-table-column>
+        
+        <b-table-column label="change" v-slot="item">
+            {{ item.short_name }}
+        </b-table-column>
+        
+        <b-table-column label="chart" v-slot="item">
+            {{ item.short_name }}
+        </b-table-column>
+
+        <b-table-column label="time" v-slot="item">
+            <Clock v-bind:timezone="item.row.timezone"/>
+        </b-table-column>
+
+<!--         <b-table-column label="chart" width="40" v-slot="item">
+            <TinyGraph v-bind:marketId="item.row.id"/>
+        </b-table-column> -->
+
+
+      </bTable>
+
       </CCardBody>
+
 
     </CCard>
   </div>
@@ -51,20 +59,17 @@ export default {
   data () { 
     return { 
       tableFields: [
-        { key: 'short_name', label: 'short_name'},
-        { key: 'symbol', label: 'symbol' },
-        { key: 'timezone', label: 'timezone' },
-        { key: 'currency', label: 'currency' },
+        { key: 'short_name', label: 'Name'},
+        { key: 'price', label: 'price'},
+        { key: 'change', label: '24h' },
+        { key: 'chart', label: '7d' },
         { key: 'time', label: 'time' },
-        { key: 'change', label: 'change (24h)' },
-        { key: 'chart', label: 'price (7d)' }
-      ],
+      ], 
     } 
   },
 
   computed: { 
     ...mapState('capi', ['market_list', 'market_last_7_points']),
-    ...mapState('coreui', ['test', 'test2']),
   },
 
   methods: {
