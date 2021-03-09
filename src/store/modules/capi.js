@@ -2,7 +2,7 @@ import axios from 'axios'
 
 // axios.defaults.xsrfHeaderName = 'X-CSRFToken'
 // axios.defaults.xsrfCookieName = 'csrftoken'
-const URL = 'http://192.168.1.157/api/'
+const URL = 'http://192.168.1.46:90/api/'
 
 const state = {
   market_list: [],

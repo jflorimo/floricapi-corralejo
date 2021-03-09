@@ -1,31 +1,32 @@
 <template>
   <div>
     <CCard v-if="market_list">
-      <CCardHeader class="text-center font-weight-bolder border-0">
+      <CCardHeader class="font-weight-bolder border-0">
         {{ $tc('market', 0) }}
       </CCardHeader>
       <CCardBody class="px-0 mx-0">
       <bTable
+        pack="fas"
         :data="market_list"
         :default-sort-direction="defaultSortDirection"
-        pack="fas"
         :sort-icon="sortIcon"
         :sort-icon-size="sortIconSize"
+        :hoverable="isHoverable"
       >
         <b-table-column field="name" label="name" sortable v-slot="item">
             <Flag v-bind:country_code="item.row.country_code"/> {{ item.row.short_name }}
         </b-table-column>
 
         <b-table-column field="price" label="price" sortable v-slot="item">
-            {{ Math.round(item.row.current_price)  }}
+            {{ item.row.currency.symbol }} {{ item.row.current_price }}
         </b-table-column>
         
-        <b-table-column field="change" label="change" sortable v-slot="item">
-            {{ item.short_name }}
+        <b-table-column field="24h_percentage" label="24h %" sortable v-slot="item">
+            <PercentageChange class="text-right" v-bind:market="item.row"/>
         </b-table-column>
-        
-        <b-table-column field="chart" label="chart" v-slot="item">
-            {{ item.short_name }}
+
+        <b-table-column field="24h" label="24h" v-slot="item">
+            {{ item.row.currency.symbol }} {{ item.row.last_close }}
         </b-table-column>
 
         <b-table-column field="time" label="time" v-slot="item">
@@ -49,21 +50,24 @@
 <script>
 import { mapState } from 'vuex'
 import { Clock } from '@/views/capi/Clock'
-import { TinyGraph } from '@/views/capi/TinyGraph'
+import { PercentageChange } from '@/views/capi/PercentageChange'
+// import { TinyGraph } from '@/views/capi/TinyGraph'
 import { Flag } from '@/views/capi/Flag'
 
 export default { 
   name: 'Home',
   components: {
     Clock,
-    TinyGraph,
+    PercentageChange,
+    // TinyGraph,
     Flag,
   },
   data () { 
-    return { 
+    return {
       defaultSortDirection: 'asc',
       sortIcon: 'arrow-up',
       sortIconSize: 'is-small',
+      isHoverable: true,
     } 
   },
 
@@ -87,3 +91,6 @@ export default {
 }
 
 </script>
+
+<style scoped>
+</style>
