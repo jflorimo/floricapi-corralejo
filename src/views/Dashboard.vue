@@ -1,31 +1,35 @@
 <template>
   <div>
     <CCard v-if="market_list">
-      <CCardHeader class="text-center font-weight-bolder border-0">
+      <CCardHeader class="font-weight-bolder border-0">
         {{ $tc('market', 0) }}
       </CCardHeader>
       <CCardBody class="px-0 mx-0">
       <bTable
+        pack="fas"
         :data="market_list"
-        :columns="columns"
+        :default-sort-direction="defaultSortDirection"
+        :sort-icon="sortIcon"
+        :sort-icon-size="sortIconSize"
+        :hoverable="isHoverable"
       >
-        <b-table-column label="name" v-slot="item">
+        <b-table-column field="name" label="name" sortable v-slot="item">
             <Flag v-bind:country_code="item.row.country_code"/> {{ item.row.short_name }}
         </b-table-column>
 
-        <b-table-column label="price" width="40" v-slot="item">
-            {{ Math.round(item.row.current_price) +""+ item.row.currency.symbol }}
+        <b-table-column field="price" label="price" sortable v-slot="item">
+            {{ item.row.currency.symbol }} {{ item.row.current_price }}
         </b-table-column>
         
-        <b-table-column label="change" v-slot="item">
-            {{ item.short_name }}
-        </b-table-column>
-        
-        <b-table-column label="chart" v-slot="item">
-            {{ item.short_name }}
+        <b-table-column field="24h_percentage" label="24h %" sortable v-slot="item">
+            <PercentageChange class="text-right" v-bind:market="item.row"/>
         </b-table-column>
 
-        <b-table-column label="time" v-slot="item">
+        <b-table-column field="24h" label="24h" v-slot="item">
+            {{ item.row.currency.symbol }} {{ item.row.last_close }}
+        </b-table-column>
+
+        <b-table-column field="time" label="time" v-slot="item">
             <Clock v-bind:timezone="item.row.timezone"/>
         </b-table-column>
 
@@ -46,25 +50,24 @@
 <script>
 import { mapState } from 'vuex'
 import { Clock } from '@/views/capi/Clock'
-import { TinyGraph } from '@/views/capi/TinyGraph'
+import { PercentageChange } from '@/views/capi/PercentageChange'
+// import { TinyGraph } from '@/views/capi/TinyGraph'
 import { Flag } from '@/views/capi/Flag'
 
 export default { 
   name: 'Home',
   components: {
     Clock,
-    TinyGraph,
+    PercentageChange,
+    // TinyGraph,
     Flag,
   },
   data () { 
-    return { 
-      tableFields: [
-        { key: 'short_name', label: 'Name'},
-        { key: 'price', label: 'price'},
-        { key: 'change', label: '24h' },
-        { key: 'chart', label: '7d' },
-        { key: 'time', label: 'time' },
-      ], 
+    return {
+      defaultSortDirection: 'asc',
+      sortIcon: 'arrow-up',
+      sortIconSize: 'is-small',
+      isHoverable: true,
     } 
   },
 
@@ -88,3 +91,6 @@ export default {
 }
 
 </script>
+
+<style scoped>
+</style>
