@@ -22,11 +22,17 @@
         </b-table-column>
         
         <b-table-column field="24h_percentage" label="24h %" sortable v-slot="item">
-            <PercentageChange class="text-right" v-bind:market="item.row"/>
+            <PercentageChange class="text-right" 
+              v-bind:market="item.row"
+              v-bind:compared_to_x_day_ago="1"
+            />
         </b-table-column>
 
-        <b-table-column field="24h" label="24h" v-slot="item">
-            {{ item.row.currency.symbol }} {{ item.row.last_close }}
+        <b-table-column field="7d" label="7d %" v-slot="item">
+            <PercentageChange class="text-right" 
+              v-bind:market="item.row" 
+              v-bind:compared_to_x_day_ago="7"
+            />
         </b-table-column>
 
         <b-table-column field="time" label="time" v-slot="item">

@@ -8,7 +8,7 @@ import { cilClock } from '@coreui/icons'
 
 export default {
   name: 'Clock',
-  props: {timezone: String},
+  props: { timezone: String },
   data () {
     return {
       time: '',
