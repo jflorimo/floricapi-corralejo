@@ -9,11 +9,11 @@
       :sort-icon-size="sortIconSize"
       :hoverable="isHoverable"
     >
-      <b-table-column field="name" v-bind:label="$tc('name', 0)" sortable v-slot="item">
+      <b-table-column field="name" v-bind:label="$tc('name', 1)" sortable v-slot="item">
           <Flag v-bind:country_code="item.row.country_code"/> {{ item.row.short_name }}
       </b-table-column>
 
-      <b-table-column field="price" v-bind:label="$tc('stock_price_label', 0)" sortable v-slot="item">
+      <b-table-column field="price" v-bind:label="$tc('stock_price_label', 1)" sortable v-slot="item">
           {{ item.row.currency.symbol }} {{ item.row.current_price }}
       </b-table-column>
       

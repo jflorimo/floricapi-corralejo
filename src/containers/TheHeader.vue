@@ -11,27 +11,32 @@
       @click="$store.commit('coreui/toggleSidebarDesktop')"
     />
     <CHeaderBrand class="mx-auto d-lg-none" to="/">
-      <CIcon name="logo" height="48" alt="Logo"/>
+      <img 
+        class="c-sidebar-brand-full"
+        src="@/assets/icons/logo-flocapi-black.png"
+        size="custom-size" 
+        width="150" 
+      />
     </CHeaderBrand>
     <CHeaderNav class="d-md-down-none mr-auto">
       <CHeaderNavItem class="px-3">
         <CHeaderNavLink to="/">
-          Acceuil
+         {{ $tc('homepage', 0) }}
         </CHeaderNavLink>
       </CHeaderNavItem>
       <CHeaderNavItem class="px-3">
         <CHeaderNavLink to="/">
-          Indices
+          {{ $tc('index', 0) }}
         </CHeaderNavLink>
       </CHeaderNavItem>
       <CHeaderNavItem class="px-3">
         <CHeaderNavLink to="/">
-          Actions
+          {{ $tc('stock', 0) }}
         </CHeaderNavLink>
       </CHeaderNavItem>
       <CHeaderNavItem class="px-3">
         <CHeaderNavLink to="/">
-          Crypto-monnaies
+          {{ $tc('cryptocurrency', 0) }}
         </CHeaderNavLink>
       </CHeaderNavItem>
 

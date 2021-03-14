@@ -1,9 +1,11 @@
 {
   "market": "Marché | Marchés",
   "stock": "Action | Actions",
-  "indice": "Indice | Indices",
+  "index": "Indice | Indices",
   "name": "Nom | Noms",
   "stock_price_label": "Cours | Cours",
   "7d": "7j",
-  "time": "heure"
+  "time": "heure",
+  "homepage": "Acceuil",
+  "cryptocurrency": "Crypto-monnaie | Crypto-monnaies"
 }

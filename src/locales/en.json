@@ -1,9 +1,11 @@
 {
   "market": "Market | Markets",
   "stock": "Action | Actions",
-  "indice": "Index | Indexes",
+  "index": "Index | Indexes",
   "name": "Name | Names",
   "stock_price_label": "Price | Prices",
   "7d": "7d",
-  "time": "time"
+  "time": "time",
+  "homepage": "Home",
+  "cryptocurrency": "Cryptocurrency | Cryptocurrencies"
 }
