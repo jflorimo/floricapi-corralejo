@@ -1,10 +1,10 @@
 <template>
   <div>
       <CCard>
-        <CCardHeader class="font-weight-bold">{{ $tc('market', 0) }}</CCardHeader>
+        <CCardHeader class="font-weight-bold">{{ $tc('stock', 0) }}</CCardHeader>
         <bTable
           pack="fas"
-          :data="market_list"
+          :data="stock_list"
           :default-sort-direction="defaultSortDirection"
           :sort-icon="sortIcon"
           :sort-icon-size="sortIconSize"
@@ -68,14 +68,14 @@ export default {
   },
 
   computed: { 
-    ...mapState('capi', ['market_list', 'market_last_7_points']),
+    ...mapState('capi', ['stock_list', 'market_last_7_points']),
   },
 
   methods: {
   },
 
   created() {
-    this.$store.dispatch('capi/fetch_markets').then(() => {
+    this.$store.dispatch('capi/fetch_stocks').then(() => {
     })
   },
 

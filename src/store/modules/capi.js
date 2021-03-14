@@ -5,7 +5,8 @@ import axios from 'axios'
 const URL = 'http://192.168.1.46:90/api/'
 
 const state = {
-  market_list: [],
+  stock_list: [],
+  indice_list: [],
   market_last_7_points: {}
 }
 
@@ -23,10 +24,17 @@ const mutations = {
 const getters = {}
 
 const actions = {
-  fetch_markets ({ commit }) {
-    return axios.get(URL + 'market/summary/')
+  fetch_stocks ({ commit }) {
+    return axios.get(URL + 'stock/summary/')
       .then(r => {
-        commit('set', ['market_list', r.data])
+        commit('set', ['stock_list', r.data])
+        return r.data
+      })
+  },
+  fetch_indices ({ commit }) {
+    return axios.get(URL + 'indice/summary/')
+      .then(r => {
+        commit('set', ['indice_list', r.data])
         return r.data
       })
   },
