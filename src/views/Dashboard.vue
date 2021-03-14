@@ -5,50 +5,44 @@
         {{ $tc('market', 0) }}
       </CCardHeader>
       <CCardBody class="px-0 mx-0">
-      <bTable
-        pack="fas"
-        :data="market_list"
-        :default-sort-direction="defaultSortDirection"
-        :sort-icon="sortIcon"
-        :sort-icon-size="sortIconSize"
-        :hoverable="isHoverable"
-      >
-        <b-table-column field="name" label="name" sortable v-slot="item">
-            <Flag v-bind:country_code="item.row.country_code"/> {{ item.row.short_name }}
-        </b-table-column>
+        <bTable
+          pack="fas"
+          :data="market_list"
+          :default-sort-direction="defaultSortDirection"
+          :sort-icon="sortIcon"
+          :sort-icon-size="sortIconSize"
+          :hoverable="isHoverable"
+        >
+          <b-table-column field="name" label="name" sortable v-slot="item">
+              <Flag v-bind:country_code="item.row.country_code"/> {{ item.row.short_name }}
+          </b-table-column>
 
-        <b-table-column field="price" label="price" sortable v-slot="item">
-            {{ item.row.currency.symbol }} {{ item.row.current_price }}
-        </b-table-column>
-        
-        <b-table-column field="24h_percentage" label="24h %" sortable v-slot="item">
-            <PercentageChange class="text-right" 
-              v-bind:market="item.row"
-              v-bind:compared_to_x_day_ago="1"
-            />
-        </b-table-column>
+          <b-table-column field="price" label="price" sortable v-slot="item">
+              {{ item.row.currency.symbol }} {{ item.row.current_price }}
+          </b-table-column>
+          
+          <b-table-column field="24h_percentage" label="24h %" sortable v-slot="item">
+              <PercentageChange class="text-right" 
+                v-bind:market="item.row"
+                v-bind:compared_to_x_day_ago="1"
+              />
+          </b-table-column>
 
-        <b-table-column field="7d" label="7d %" v-slot="item">
-            <PercentageChange class="text-right" 
-              v-bind:market="item.row" 
-              v-bind:compared_to_x_day_ago="7"
-            />
-        </b-table-column>
+          <b-table-column field="7d" label="7d %" v-slot="item">
+              <PercentageChange class="text-right" 
+                v-bind:market="item.row" 
+                v-bind:compared_to_x_day_ago="7"
+              />
+          </b-table-column>
 
-        <b-table-column field="time" label="time" v-slot="item">
-            <Clock v-bind:timezone="item.row.timezone"/>
-        </b-table-column>
-
-<!--         <b-table-column label="chart" width="40" v-slot="item">
-            <TinyGraph v-bind:marketId="item.row.id"/>
-        </b-table-column> -->
-
-
-      </bTable>
-
+          <b-table-column field="time" label="time" v-slot="item">
+              <Clock v-bind:timezone="item.row.timezone"/>
+          </b-table-column>
+  <!--         <b-table-column label="chart" width="40" v-slot="item">
+              <TinyGraph v-bind:marketId="item.row.id"/>
+          </b-table-column> -->
+        </bTable>
       </CCardBody>
-
-
     </CCard>
   </div>
 </template>

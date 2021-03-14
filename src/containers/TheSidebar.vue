@@ -6,19 +6,17 @@
     @update:show="(value) => $store.commit('coreui/set', ['sidebarShow', value])"
   >
     <CSidebarBrand class="d-md-down-none" to="/">
-      <CIcon 
-        class="c-sidebar-brand-full" 
-        name="logo" 
+      <img 
+        class="c-sidebar-brand-full"
+        src="@/assets/icons/logo-flocapi-white.png"
         size="custom-size" 
-        :height="35" 
-        viewBox="0 0 556 134"
+        width="150" 
       />
-      <CIcon 
+      <img
         class="c-sidebar-brand-minimized" 
-        name="logo" 
+        src="@/assets/icons/logo.png"
         size="custom-size" 
-        :height="35" 
-        viewBox="0 0 110 134"
+        width="45"
       />
     </CSidebarBrand>
 
