@@ -1,10 +1,7 @@
 <template>
   <div>
-    <CCard v-if="market_list">
-      <CCardHeader class="font-weight-bolder border-0">
-        {{ $tc('market', 0) }}
-      </CCardHeader>
-      <CCardBody class="px-0 mx-0">
+      <CCard>
+        <CCardHeader class="font-weight-bold">{{ $tc('market', 0) }}</CCardHeader>
         <bTable
           pack="fas"
           :data="market_list"
@@ -42,8 +39,7 @@
               <TinyGraph v-bind:marketId="item.row.id"/>
           </b-table-column> -->
         </bTable>
-      </CCardBody>
-    </CCard>
+      </CCard>
   </div>
 </template>
 

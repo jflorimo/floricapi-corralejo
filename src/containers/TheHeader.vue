@@ -21,12 +21,17 @@
       </CHeaderNavItem>
       <CHeaderNavItem class="px-3">
         <CHeaderNavLink to="/">
-          Marchés
+          Indices
         </CHeaderNavLink>
       </CHeaderNavItem>
       <CHeaderNavItem class="px-3">
         <CHeaderNavLink to="/">
           Actions
+        </CHeaderNavLink>
+      </CHeaderNavItem>
+      <CHeaderNavItem class="px-3">
+        <CHeaderNavLink to="/">
+          Crypto-monnaies
         </CHeaderNavLink>
       </CHeaderNavItem>
 
