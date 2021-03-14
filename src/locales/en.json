@@ -1,4 +1,9 @@
 {
   "market": "Market | Markets",
-  "stock": "Action | Actions"
+  "stock": "Action | Actions",
+  "indice": "Index | Indexes",
+  "name": "Name | Names",
+  "stock_price_label": "Price | Prices",
+  "7d": "7d",
+  "time": "time"
 }
