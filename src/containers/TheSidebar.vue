@@ -19,8 +19,14 @@
         width="45"
       />
     </CSidebarBrand>
+    
+    <CSidebarNav>
+      <CSidebarNavItem v-bind:name="$tc('homepage', 0)" to="/" icon="cil-speedometer"/>
+      <CSidebarNavItem v-bind:name="$tc('index', 0)" to="/index/" icon="cil-chart-line"/>
+      <CSidebarNavItem v-bind:name="$tc('stock', 0)" to="/stock/" icon="cil-bar-chart"/>
+      <CSidebarNavItem v-bind:name="$tc('cryptocurrency', 0)" to="/cryptocurrency/" icon="cib-bitcoin"/>
+    </CSidebarNav>
 
-    <CRenderFunction flat :content-to-render="$options.nav"/>
     <CSidebarMinimizer
       class="d-md-down-none"
       @click.native="$store.commit('coreui/set', ['sidebarMinimize', !minimize])"

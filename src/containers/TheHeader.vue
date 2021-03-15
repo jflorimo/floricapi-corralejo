@@ -20,24 +20,19 @@
     </CHeaderBrand>
     <CHeaderNav class="d-md-down-none mr-auto">
       <CHeaderNavItem class="px-3">
-        <CHeaderNavLink to="/">
-         {{ $tc('homepage', 0) }}
-        </CHeaderNavLink>
+        <CHeaderNavLink to="/">{{ $tc('homepage', 0) }}</CHeaderNavLink>
       </CHeaderNavItem>
+
       <CHeaderNavItem class="px-3">
-        <CHeaderNavLink to="/">
-          {{ $tc('index', 0) }}
-        </CHeaderNavLink>
+        <CHeaderNavLink to="/index/">{{ $tc('index', 0) }}</CHeaderNavLink>
       </CHeaderNavItem>
+
       <CHeaderNavItem class="px-3">
-        <CHeaderNavLink to="/">
-          {{ $tc('stock', 0) }}
-        </CHeaderNavLink>
+        <CHeaderNavLink to="/stock/">{{ $tc('stock', 0) }}</CHeaderNavLink>
       </CHeaderNavItem>
+
       <CHeaderNavItem class="px-3">
-        <CHeaderNavLink to="/">
-          {{ $tc('cryptocurrency', 0) }}
-        </CHeaderNavLink>
+        <CHeaderNavLink to="/cryptocurrency/">{{ $tc('cryptocurrency', 0) }}</CHeaderNavLink>
       </CHeaderNavItem>
 
     </CHeaderNav>

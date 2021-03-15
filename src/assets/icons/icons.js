@@ -1,4 +1,5 @@
 import {
+  cibBitcoin,
   cibFacebook,
   cibTwitter,
   cibLinkedin,
@@ -81,11 +82,9 @@ import {
   cilXCircle
 
 } from '@coreui/icons'
-import { logo } from './logo'
 
 export const iconsSet = Object.assign(
   {},
-  { logo },
   {
     cilArrowRight,
     cilBan,
@@ -144,6 +143,7 @@ export const iconsSet = Object.assign(
     cifPl
   },
   {
+    cibBitcoin,
     cibFacebook,
     cibTwitter,
     cibLinkedin,

@@ -1,26 +1,20 @@
 <template>
   <div>
     <CardIndiceGeneral/>
-    <CardStockGeneral/>
   </div>
 </template>
 
 <script>
 import { CardIndiceGeneral } from '@/views/capi/CardIndiceGeneral'
-import { CardStockGeneral } from '@/views/capi/CardStockGeneral'
-
 export default { 
-  name: 'Home',
+  name: 'Index',
 
   components: {
     CardIndiceGeneral,
-    CardStockGeneral
   },
 
   data () { 
-    return {
-     
-    } 
+    return {} 
   },
 
   computed: { 

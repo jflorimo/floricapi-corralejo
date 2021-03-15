@@ -4,10 +4,13 @@ import Router from 'vue-router'
 // Containers
 const TheContainer = () => import('@/containers/TheContainer')
 
-// Views
-const Dashboard = () => import('@/views/Dashboard')
+// Main Pages
+const Dashboard = () => import('@/views/pages/Dashboard')
+const Index = () => import('@/views/pages/Index')
+const Stock = () => import('@/views/pages/Stock')
+const Crypto = () => import('@/views/pages/Crypto')
 
-// Views - Pages
+// Other Pages
 const Page404 = () => import('@/views/pages/Page404')
 const Page500 = () => import('@/views/pages/Page500')
 const Login = () => import('@/views/pages/Login')
@@ -34,6 +37,21 @@ function configRoutes () {
           path: '',
           name: 'Dashboard',
           component: Dashboard
+        },
+        {
+          path: '/index/',
+          name: 'Index',
+          component: Index
+        },
+        {
+          path: '/stock/',
+          name: 'Stock',
+          component: Stock
+        },
+        {
+          path: '/cryptocurrency/',
+          name: 'Crypto',
+          component: Crypto
         },
       ]
     },
