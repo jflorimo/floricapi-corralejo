@@ -35,11 +35,9 @@
 </template>
 
 <script>
-import nav from './_nav'
 
 export default {
   name: 'TheSidebar',
-  nav,
   computed: {
     show () {
       return this.$store.state.coreui.sidebarShow 
