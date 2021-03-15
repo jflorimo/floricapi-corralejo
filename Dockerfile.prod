@@ -9,7 +9,8 @@ COPY package-lock.json ./
 
 RUN npm install
 
-COPY src ./
+COPY vue.config.js ./
+COPY src/ ./src/
 
 RUN npm run build
 
