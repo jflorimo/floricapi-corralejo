@@ -16,7 +16,7 @@ function git-flow() {
     fi
     file="$1"
 
-    version=$(grep __version__ "$file" | sed 's/__version__ = "\(.*\)"/\1/')
+    version=$(grep '"version": "' package.json | sed -e 's/"version": "\(.*\)",/\1/')
     version=$(( $version + 1 ))
 
     if git diff-index --quiet HEAD -- ; then
