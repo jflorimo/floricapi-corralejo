@@ -17,15 +17,27 @@ function git-flow() {
     file="$1"
 
     version=$(grep '"version": "' package.json | sed -e 's/"version": "\(.*\)",/\1/')
-    version=$(( $version + 1 ))
+    major=$(echo $version | sed -E 's/([0-9]*)\.([0-9]*)\.([0-9]*)/\1/')
+    minor=$(echo $version | sed -E 's/([0-9]*)\.([0-9]*)\.([0-9]*)/\2/')
+    patch=$(echo $version | sed -E 's/([0-9]*)\.([0-9]*)\.([0-9]*)/\3/')
 
+    if [[ "$3" == "release" ]]; then
+        minor=$(( $minor + 1 ))
+    elif [[ "$3" == "hotfix" ]]; then
+        patch=$(( $patch + 1 ))
+    else
+        >&2 echo "Unknown release command."
+        return 1
+    fi
+    
+    version=$major"."$minor"."$patch
     if git diff-index --quiet HEAD -- ; then
         dirty=0
     else
         dirty=1
         git stash
     fi
-    sed -i "s/__version__ = \".*\"/__version__ = \"$version\"/" "$file"
+    sed -i "s/\"version\": \"\(.*\)\"/\"version\": \"$version\"/" "$file"
 
     echo "Enter the suffix part of the branch. A new branch named \"$prefix/suffix\" will be created. Or press enter to use the default name."
     echo -n "$prefix/v[$version]: "
@@ -58,8 +70,8 @@ case "$1" in
         project=$(get_env HEROKU_PROJECT_NAME)
         heroku open -a project
         ;;
-	"heroku-shell")
-	    project=$(get_env HEROKU_PROJECT_NAME)
+    "heroku-shell")
+        project=$(get_env HEROKU_PROJECT_NAME)
         heroku run bash -a project
         ;;
     "heroku")
