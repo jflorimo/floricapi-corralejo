@@ -57,4 +57,4 @@ npm run test:e2e
 
 ## Copyright and license
 
-Copyright (c) 2020 florilabo jflorimo.
+Copyright (c) 2020 florilab jflorimo.

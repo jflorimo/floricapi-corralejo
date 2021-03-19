@@ -3,64 +3,53 @@
     <CToggler
       in-header
       class="ml-3 d-lg-none"
-      @click="$store.commit('toggleSidebarMobile')"
+      @click="$store.commit('coreui/toggleSidebarMobile')"
     />
     <CToggler
       in-header
       class="ml-3 d-md-down-none"
-      @click="$store.commit('toggleSidebarDesktop')"
+      @click="$store.commit('coreui/toggleSidebarDesktop')"
     />
     <CHeaderBrand class="mx-auto d-lg-none" to="/">
-      <CIcon name="logo" height="48" alt="Logo"/>
+      <img 
+        class="c-sidebar-brand-full"
+        src="@/assets/icons/logo-flocapi-black.png"
+        size="custom-size" 
+        width="150" 
+      />
     </CHeaderBrand>
     <CHeaderNav class="d-md-down-none mr-auto">
       <CHeaderNavItem class="px-3">
-        <CHeaderNavLink to="/dashboard">
-          Dashboard
-        </CHeaderNavLink>
+        <CHeaderNavLink to="/">{{ $tc('homepage', 0) }}</CHeaderNavLink>
       </CHeaderNavItem>
+
       <CHeaderNavItem class="px-3">
-        <CHeaderNavLink to="/users" exact>
-          Users
-        </CHeaderNavLink>
+        <CHeaderNavLink to="/index/">{{ $tc('index', 0) }}</CHeaderNavLink>
       </CHeaderNavItem>
+
       <CHeaderNavItem class="px-3">
-        <CHeaderNavLink>
-          Settings
-        </CHeaderNavLink>
+        <CHeaderNavLink to="/stock/">{{ $tc('stock', 0) }}</CHeaderNavLink>
       </CHeaderNavItem>
+
+      <CHeaderNavItem class="px-3">
+        <CHeaderNavLink to="/cryptocurrency/">{{ $tc('cryptocurrency', 0) }}</CHeaderNavLink>
+      </CHeaderNavItem>
+
     </CHeaderNav>
-    <CHeaderNav class="mr-4">
-      <CHeaderNavItem class="d-md-down-none mx-2">
-        <CHeaderNavLink>
-          <CIcon name="cil-bell"/>
-        </CHeaderNavLink>
-      </CHeaderNavItem>
-      <CHeaderNavItem class="d-md-down-none mx-2">
-        <CHeaderNavLink>
-          <CIcon name="cil-list"/>
-        </CHeaderNavLink>
-      </CHeaderNavItem>
-      <CHeaderNavItem class="d-md-down-none mx-2">
-        <CHeaderNavLink>
-          <CIcon name="cil-envelope-open"/>
-        </CHeaderNavLink>
-      </CHeaderNavItem>
-      <TheHeaderDropdownAccnt/>
-    </CHeaderNav>
-    <CSubheader class="px-3">
-      <CBreadcrumbRouter class="border-0 mb-0"/>
-    </CSubheader>
+    <LocaleSwitcher class="c-header-nav px-3"/>
+
+
   </CHeader>
 </template>
 
 <script>
-import TheHeaderDropdownAccnt from './TheHeaderDropdownAccnt'
+import { LocaleSwitcher } from '@/views/capi/LocaleSwitcher'
+
 
 export default {
   name: 'TheHeader',
   components: {
-    TheHeaderDropdownAccnt
+    LocaleSwitcher,
   }
 }
 </script>

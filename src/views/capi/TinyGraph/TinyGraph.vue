@@ -1,5 +1,5 @@
 <template>
-  <CChartLine class="custom-chart"
+  <CChartLine class="capi-chart"
     :datasets="marketDataPoints"
     :options="computedOptions"/>
 </template>

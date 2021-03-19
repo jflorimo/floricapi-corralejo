@@ -1,5 +1,5 @@
 <template>
-    <p>{{ time }} <CIcon :style="getMarketColor()" :content="clockIcon"/></p>   
+  <span>{{ time }} <CIcon :style="getMarketColor()" :content="clockIcon"/></span>   
 </template>
 
 <script>
@@ -8,7 +8,7 @@ import { cilClock } from '@coreui/icons'
 
 export default {
   name: 'Clock',
-  props: {timezone: String},
+  props: { timezone: String },
   data () {
     return {
       time: '',

@@ -1,4 +1,5 @@
 import {
+  cibBitcoin,
   cibFacebook,
   cibTwitter,
   cibLinkedin,
@@ -34,11 +35,13 @@ import {
 import {
   cilArrowRight,
   cilBan,
+  cilBarChart,
   cilBasket,
   cilBell,
   cilCalculator,
   cilCalendar,
   cilCloudDownload,
+  cilChartLine,
   cilChartPie,
   cilCheck,
   cilChevronBottom,
@@ -79,19 +82,19 @@ import {
   cilXCircle
 
 } from '@coreui/icons'
-import { logo } from './logo'
 
 export const iconsSet = Object.assign(
   {},
-  { logo },
   {
     cilArrowRight,
     cilBan,
+    cilBarChart,
     cilBasket,
     cilBell,
     cilCalculator,
     cilCalendar,
     cilCloudDownload,
+    cilChartLine,
     cilChartPie,
     cilCheck,
     cilChevronBottom,
@@ -140,6 +143,7 @@ export const iconsSet = Object.assign(
     cifPl
   },
   {
+    cibBitcoin,
     cibFacebook,
     cibTwitter,
     cibLinkedin,

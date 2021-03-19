@@ -3,45 +3,47 @@
     fixed 
     :minimize="minimize"
     :show="show"
-    @update:show="(value) => $store.commit('set', ['sidebarShow', value])"
+    @update:show="(value) => $store.commit('coreui/set', ['sidebarShow', value])"
   >
     <CSidebarBrand class="d-md-down-none" to="/">
-      <CIcon 
-        class="c-sidebar-brand-full" 
-        name="logo" 
+      <img 
+        class="c-sidebar-brand-full"
+        src="@/assets/icons/logo-flocapi-white.png"
         size="custom-size" 
-        :height="35" 
-        viewBox="0 0 556 134"
+        width="150" 
       />
-      <CIcon 
+      <img
         class="c-sidebar-brand-minimized" 
-        name="logo" 
+        src="@/assets/icons/logo.png"
         size="custom-size" 
-        :height="35" 
-        viewBox="0 0 110 134"
+        width="45"
       />
     </CSidebarBrand>
+    
+    <CSidebarNav>
+      <CSidebarNavItem v-bind:name="$tc('homepage', 0)" to="/" icon="cil-speedometer"/>
+      <CSidebarNavItem v-bind:name="$tc('index', 0)" to="/index/" icon="cil-chart-line"/>
+      <CSidebarNavItem v-bind:name="$tc('stock', 0)" to="/stock/" icon="cil-bar-chart"/>
+      <CSidebarNavItem v-bind:name="$tc('cryptocurrency', 0)" to="/cryptocurrency/" icon="cib-bitcoin"/>
+    </CSidebarNav>
 
-    <CRenderFunction flat :content-to-render="$options.nav"/>
     <CSidebarMinimizer
       class="d-md-down-none"
-      @click.native="$store.commit('set', ['sidebarMinimize', !minimize])"
+      @click.native="$store.commit('coreui/set', ['sidebarMinimize', !minimize])"
     />
   </CSidebar>
 </template>
 
 <script>
-import nav from './_nav'
 
 export default {
   name: 'TheSidebar',
-  nav,
   computed: {
     show () {
-      return this.$store.state.sidebarShow 
+      return this.$store.state.coreui.sidebarShow 
     },
     minimize () {
-      return this.$store.state.sidebarMinimize 
+      return this.$store.state.coreui.sidebarMinimize
     }
   }
 }
