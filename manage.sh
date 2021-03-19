@@ -82,6 +82,14 @@ case "$1" in
     "test")
         ;;
 
+    "docker-build")
+        docker build -f Dockerfile-prod -t corralejo .
+        ;;
+
+    "docker-run")
+        docker run -e PORT=8080 -it --rm -p 8080:8080 --name corralejo corralejo
+        ;;
+
     "release")
         release package.json
         ;;
