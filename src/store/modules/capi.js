@@ -2,7 +2,7 @@ import axios from 'axios'
 
 // axios.defaults.xsrfHeaderName = 'X-CSRFToken'
 // axios.defaults.xsrfCookieName = 'csrftoken'
-const URL = 'http://192.168.1.46:90/api/'
+const MILAGRO_URL = process.env.VUE_APP_MILAGRO_HOST
 
 const state = {
   stock_list: [],
@@ -25,14 +25,14 @@ const getters = {}
 
 const actions = {
   fetch_stocks ({ commit }) {
-    return axios.get(URL + 'stock/summary/')
+    return axios.get(MILAGRO_URL + 'stock/summary/')
       .then(r => {
         commit('set', ['stock_list', r.data])
         return r.data
       })
   },
   fetch_indices ({ commit }) {
-    return axios.get(URL + 'indice/summary/')
+    return axios.get(MILAGRO_URL + 'indice/summary/')
       .then(r => {
         commit('set', ['indice_list', r.data])
         return r.data
@@ -44,7 +44,7 @@ const actions = {
     params.append('aggregation', 'daily');
     params.append('start', '2020-09-08');
     params.append('end', '2020-11-08')
-    return axios.get(URL + 'market/price/', {params}).then(r => {
+    return axios.get(MILAGRO_URL + 'market/price/', {params}).then(r => {
         commit('setMarketLast7Points', [market_id, r.data['date_list'], r.data['price_list']])
       })
   }
