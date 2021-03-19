@@ -3,4 +3,4 @@ build:
     web: Dockerfile-prod
 
 run:
-  web: /app/src/start.sh
+  web: nginx -g daemon off
