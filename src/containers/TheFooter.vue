@@ -1,7 +1,7 @@
 <template>
   <CFooter :fixed="false">
     <div>
-      <a href="https://coreui.io" target="_blank">Flocapi</a>
+      <a href="/" target="_blank">Flocapi</a>
       <span class="ml-1">&copy; {{new Date().getFullYear()}} florilab.</span>
     </div>
     <div class="mfs-auto">
