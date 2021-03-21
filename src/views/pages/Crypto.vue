@@ -1,6 +1,6 @@
 <template>
   <div>
-    CRYPTOTO
+    CRYPTOTO PLOUP
   </div>
 </template>
 
