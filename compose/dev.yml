@@ -1,0 +1,12 @@
+version: '2'
+
+services:
+  vuejs:
+    restart: unless-stopped
+    build:
+      context: ..
+      dockerfile: Dockerfile-dev
+    ports:
+      - "8080:8080"
+    env_file:
+      - ../.env

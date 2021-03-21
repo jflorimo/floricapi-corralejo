@@ -2,3 +2,5 @@ build:
   docker:
     web: Dockerfile-prod
 
+run:
+  web: /start.sh

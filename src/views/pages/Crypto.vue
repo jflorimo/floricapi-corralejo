@@ -1,6 +1,8 @@
 <template>
   <div>
-    CRYPTOTO PLOUP
+    CRYPTOTO PLOUP {{ nodenv }}
+    host: {{ hohost }}
+    lg: {{ langue }}
   </div>
 </template>
 
@@ -13,7 +15,11 @@ export default {
   },
 
   data () { 
-    return {} 
+    return {
+      nodenv: process.env.NODE_ENV,
+      hohost: process.env.VUE_APP_MILAGRO_HOST,
+      langue: process.env.VUE_APP_I18N_LOCALE,
+    } 
   },
 
   computed: { 
