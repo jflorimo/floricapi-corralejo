@@ -5,6 +5,7 @@ function get_env() {
     grep "^$1=" .env | sed "s/$1=//;s/\s*#.*//"
 }
 
+
 # Manage the creation of a release and hotfix branches
 function git-flow() {
     right_branch="$2"
@@ -82,12 +83,12 @@ case "$1" in
     "test")
         ;;
 
-    "docker-build")
-        docker build -f Dockerfile-prod -t corralejo .
+    "docker-dev-build")
+        docker-compose -p corralejo-dc -f compose/dev.yml build
         ;;
 
-    "docker-run")
-        docker run -e PORT=8080 -it --rm -p 8080:8080 --name corralejo corralejo
+    "docker-run-run")
+        docker-compose -p corralejo-dc -f compose/dev.yml run
         ;;
 
     "release")
