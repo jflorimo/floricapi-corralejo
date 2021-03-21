@@ -24,4 +24,4 @@ COPY /compose/default.conf /etc/nginx/conf.d/
 COPY --from=build-stage /app/dist /usr/share/nginx/html
 
 # https://jonhnes.medium.com/vue-with-docker-since-creation-until-deployment-on-heroku-5b31c8f041a7
-CMD sed -i -e 's/$PORT/'"$PORT"'/g' /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'
+CMD sed -i -e 's/$PORT/'"$PORT"'/g' /etc/nginx/conf.d/default.conf

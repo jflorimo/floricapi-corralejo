@@ -2,3 +2,5 @@ build:
   docker:
     web: Dockerfile-prod
 
+run:
+  web: nginx -g daemon off
