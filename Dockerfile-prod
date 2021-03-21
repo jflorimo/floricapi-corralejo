@@ -19,7 +19,7 @@ COPY src/ ./src/
 RUN npm run build
 
 # production stage
-FROM nginx:1.18.0-alpine-stable as production-stage
+FROM nginx:1.19.8-alpine as production-stage
 COPY /compose/default.conf /etc/nginx/conf.d/
 COPY --from=build-stage /app/dist /usr/share/nginx/html
 
