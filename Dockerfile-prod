@@ -17,6 +17,7 @@ RUN apk add --no-cache --virtual .gyp \
 
 COPY vue.config.js ./
 COPY src/ ./src/
+COPY public ./public/
 COPY .env.production ./
 
 RUN npm run build
