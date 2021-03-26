@@ -69,7 +69,6 @@ export default {
       sortIcon: 'arrow-up',
       sortIconSize: 'is-small',
       isHoverable: true,
-      capipi: 'wefwefwefwe'
     }
   },
   computed: { 
