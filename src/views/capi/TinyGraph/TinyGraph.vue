@@ -1,82 +1,52 @@
 <template>
-  <CChartLine class="capi-chart"
-    :datasets="marketDataPoints"
-    :options="computedOptions"/>
+<div class="tiny_graph">
+<svg width="135" height="50" viewBox="0 0 135 50" 
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink">
+  <polyline v-bind:points="pointList" fill="none" stroke="#ed5565" stroke-width="1.25" preserveAspectRatio="none"/>
+</svg>
+</div>
 </template>
 
 <script>
 import { mapState } from 'vuex'
-import { CChartLine } from '@coreui/vue-chartjs'
 
 export default {
   name: 'TinyGraph',
-  components: { CChartLine },
+  components: {},
   props: {
     marketId: Number,
   },
   data () {
     return {
-      marketDataPoints: []
+      pointList: "",
     }
   },
   computed: {
-    ...mapState('capi', ['market_last_7_points']),
-    computedOptions () {
-      return {
-        scales: {
-          xAxes: [{
-            display: false,
-            offset: true,
-            ticks: { display: false },
-          }],
-          yAxes: [{
-            display: false,
-            offset: true,
-            ticks: { display: false },
-          }]
-        },
-        elements: {
-          line: {
-            borderWidth: 3
-          },
-          point: {
-            radius: 3,
-            hitRadius: 10,
-            hoverRadius: 4,
-          }
-        },
-        legend: { display: false },
-        tooltips: { enabled: true, displayColors: false },
-        maintainAspectRatio: false,
-        responsive: false,
-        // animation: { duration: 0 }, // general animation time
-        // hover: { animationDuration: 0 }, // duration of animations when hovering an item
-        // responsiveAnimationDuration: 0, // animation duration after a resize
-      }
-    },
+    ...mapState('capi', ['stock_last_7_days_close']),
   },
   methods: {
-    preparedGraphDataSet () {
-      return {
-        data: [],
-        backgroundColor: 'transparent',
-        borderColor: 'orange',
-        pointBorderColor: 'orange',
-        pointBackgroundColor: 'orange',
+    setPoints() {
+      let price_list = this.stock_last_7_days_close[this.marketId]["price_list"]
+      let min_close = this.stock_last_7_days_close[this.marketId]["min"]
+      let max_close = this.stock_last_7_days_close[this.marketId]["max"]
+      let width = 135
+      let height = 50
+      let len = price_list.length;
+
+      var points = ""
+      for (var i = 0; i < len; i++) {
+        var x = (i * width) / len
+        var y = ((max_close - price_list[i]) * height) / (max_close - min_close)
+        points += x+", "+y+" "
       }
-    },
-    setDataMarketGraph() {
-      var data = [0, 0, 0, 0, 0, 0, 0]
-      if (this.market_last_7_points[this.marketId])
-        data = this.market_last_7_points[this.marketId]['value']
-      var res = this.preparedGraphDataSet()
-      res['data'] = data
-      this.$set(this.marketDataPoints, 0, res)
-    },
+      this.pointList = points
+    }
+    
   },
   created() {
-    this.$store.dispatch('capi/fetch_daily_market_points', this.marketId).then(() => {
-      this.setDataMarketGraph()
+    this.$store.dispatch('capi/fetch_graph', this.marketId).then(() => {
+      this.setPoints()
     })
   },
   mounted() {},
@@ -84,5 +54,9 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
+.tiny_graph {
+  width: 135px;
+  height: 50px;
+}
 </style>

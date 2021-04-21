@@ -36,7 +36,10 @@ function configRoutes () {
         {
           path: '',
           name: 'Dashboard',
-          component: Dashboard
+          component: Dashboard,
+          meta: {
+            title: 'Flocapi'
+          }
         },
         {
           path: '/index/',

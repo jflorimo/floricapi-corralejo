@@ -8,6 +8,7 @@
       :sort-icon="sortIcon"
       :sort-icon-size="sortIconSize"
       :hoverable="isHoverable"
+      :row-class="(row, index) => 'capi-row'"
     >
       <b-table-column field="name" v-bind:label="$tc('name', 1)" sortable v-slot="item">
           <Flag v-bind:country_code="item.row.country_code"/> {{ item.row.short_name }}
@@ -31,12 +32,13 @@
           />
       </b-table-column>
 
+      <b-table-column width="170" field="chart" label="chart" v-slot="item">
+          <TinyGraph v-bind:marketId="item.row.id"/>
+      </b-table-column>
+      
       <b-table-column field="time" v-bind:label="$tc('time', 0)" v-slot="item">
           <Clock v-bind:timezone="item.row.timezone"/>
       </b-table-column>
-      <!-- <b-table-column label="chart" width="40" v-slot="item">
-          <TinyGraph v-bind:marketId="item.row.id"/>
-      </b-table-column> -->
     </bTable>
   </CCard>
 </template>
@@ -46,6 +48,7 @@ import { mapState } from 'vuex'
 
 import { Clock } from '@/views/capi/Clock'
 import { PercentageChange } from '@/views/capi/PercentageChange'
+import { TinyGraph } from '@/views/capi/TinyGraph'
 import { Flag } from '@/views/capi/Flag'
 
 
@@ -54,6 +57,7 @@ export default {
   components: {
     Clock,
     PercentageChange,
+    TinyGraph,
     Flag
   },
   props: {
@@ -82,5 +86,10 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
+  .capi-row td{
+    padding-top: 1px;
+    padding-bottom: 1px;
+    vertical-align: middle;
+  }
 </style>
