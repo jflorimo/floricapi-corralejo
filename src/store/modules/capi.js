@@ -7,17 +7,18 @@ const MILAGRO_URL = process.env.VUE_APP_MILAGRO_HOST
 const state = {
   stock_list: [],
   indice_list: [],
-  market_last_7_points: {}
+  stock_last_7_days_close: {}
 }
 
 const mutations = {
   set (state, [variable, value]) {
     state[variable] = value
   },
-  setMarketLast7Points(state, [market_id, dates, values]) {
-    state['market_last_7_points'][market_id] = {}
-    state['market_last_7_points'][market_id]['date'] = dates
-    state['market_last_7_points'][market_id]['value'] = values
+  setStockLast7DaysClose(state, [stock_id, values, min, max]) {
+    state['stock_last_7_days_close'][stock_id] = {}
+    state['stock_last_7_days_close'][stock_id]['price_list'] = values
+    state['stock_last_7_days_close'][stock_id]['min'] = min
+    state['stock_last_7_days_close'][stock_id]['max'] = max
   }
 }
 
@@ -38,14 +39,12 @@ const actions = {
         return r.data
       })
   },
-  fetch_daily_market_points({ commit }, market_id) {
+  fetch_graph({ commit }, stock_id) {
     const params = new URLSearchParams();
-    params.append('market_id', market_id);
-    params.append('aggregation', 'daily');
-    params.append('start', '2020-09-08');
-    params.append('end', '2020-11-08')
-    return axios.get(MILAGRO_URL + 'market/price/', {params}).then(r => {
-        commit('setMarketLast7Points', [market_id, r.data['date_list'], r.data['price_list']])
+    params.append('stock_id', stock_id);
+    params.append('aggregation', '_15m');
+    return axios.get(MILAGRO_URL + 'graph/', {params}).then(r => {
+        commit('setStockLast7DaysClose', [stock_id, r.data['price_list'], r.data["min"], r.data["max"]])
       })
   }
 }
