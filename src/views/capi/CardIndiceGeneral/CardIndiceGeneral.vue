@@ -37,7 +37,11 @@
       </b-table-column>
       
       <b-table-column field="time" v-bind:label="$tc('time', 0)" v-slot="item">
-          <Clock v-bind:timezone="item.row.timezone"/>
+          <Clock 
+            v-bind:timezone="item.row.timezone" 
+            v-bind:open="item.row.open_time"
+            v-bind:close="item.row.close_time"
+          />
       </b-table-column>
     </bTable>
   </CCard>

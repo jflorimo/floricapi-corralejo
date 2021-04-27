@@ -1,5 +1,5 @@
 <template>
-  <span>{{ time }} <CIcon :style="getMarketColor()" :content="clockIcon"/></span>   
+  <span>{{ time }} <CIcon :style="getStockColor()" :content="clockIcon"/></span>   
 </template>
 
 <script>
@@ -8,18 +8,32 @@ import { cilClock } from '@coreui/icons'
 
 export default {
   name: 'Clock',
-  props: { timezone: String },
+  props: { timezone: String, open: String, close: String },
   data () {
     return {
       time: '',
-      clockIcon: cilClock
+      refresh_interval: 5 * 1000,
+      clockIcon: cilClock,
     }
   },
   methods: {
-    getMarketColor(market) {
-      var color = ""
-      if( market )
+    getStockColor() {
+      var to_sec = function(t){
+        return t.seconds() + (t.minutes() * 60) + (t.hours() * 60 * 60);
+      }
+
+      var color = "color:#3c4b64" // default
+      if( this.open && this.close ){
         color = "color:red"
+        let now = to_sec(moment());
+        var open = to_sec(moment(this.open));
+        var close = to_sec(moment(this.close));
+
+        if (now >= open && now <= close)
+          color = "color:#2eb85c" // green
+        else
+          color = "color:#e55353" // red
+      }
       return color
     },
     formatTimeFromTimeZone(timeZone) {
@@ -34,7 +48,7 @@ export default {
   },
   mounted() {
     this.setTime()
-    this.clockInterval = setInterval(this.setTime, 1000)
+    this.clockInterval = setInterval(this.setTime, this.refresh_interval)
   },
   beforeDestroy () {
     clearInterval(this.clockInterval)
