@@ -4,7 +4,9 @@ import { status } from './const.js'
 const MILAGRO_URL = process.env.VUE_APP_MILAGRO_HOST
 const ADD_NOTIFY_ME_CRYPTO = MILAGRO_URL + "me/notify/crypto"
 
-const state = {}
+const state = {
+  isNotifyMeSent: false,
+}
 
 const mutations = {
   set (state, [variable, value]) {
@@ -12,13 +14,23 @@ const mutations = {
   },
 }
 
-const getters = {}
+const getters = {
+
+}
 
 const actions = {
-  post_notify_me_crypto (email) {
-    const data = { email: email }
-    axios.post(ADD_NOTIFY_ME_CRYPTO, data)
-      .then(r => {return r.status === status.HTTP_201_CREATED});
+  post_notify_me_crypto ({commit}, email) {
+    return axios.post(ADD_NOTIFY_ME_CRYPTO, { email: email }).then(
+        r => {
+          const bla = Boolean(r.status === status.HTTP_201_CREATED)
+          console.log("THEN")
+          console.log(bla)
+          commit("set", ["isNotifyMeSent", (r.status === status.HTTP_201_CREATED)])
+        }
+    ).catch(() => {
+        console.log("CATCH")
+        commit("set", ["isNotifyMeSent", false])
+    });
   },
 }
 

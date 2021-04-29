@@ -32,7 +32,7 @@
           />
       </b-table-column>
 
-      <b-table-column width="170" field="chart" label="chart" v-slot="item">
+      <b-table-column width="170" field="chart" label="7d chart" v-slot="item">
           <TinyGraph v-bind:marketId="item.row.id"/>
       </b-table-column>
       
@@ -64,9 +64,7 @@ export default {
     TinyGraph,
     Flag
   },
-  props: {
-
-  },
+  props: {},
   data () {
     return {
       defaultSortDirection: 'asc',

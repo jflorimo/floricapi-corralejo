@@ -1,3 +1,4 @@
+// for const name see https://www.django-rest-framework.org/api-guide/status-codes/
 const status = {
   HTTP_200_OK: 200,
   HTTP_201_CREATED: 201, 
@@ -10,5 +11,4 @@ const status = {
   HTTP_208_ALREADY_REPORTED: 208,
   HTTP_226_IM_USED: 226,
 }
-
 export {status};

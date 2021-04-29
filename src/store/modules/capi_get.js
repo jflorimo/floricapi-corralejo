@@ -1,7 +1,5 @@
 import axios from 'axios'
 
-// axios.defaults.xsrfHeaderName = 'X-CSRFToken'
-// axios.defaults.xsrfCookieName = 'csrftoken'
 const MILAGRO_URL = process.env.VUE_APP_MILAGRO_HOST
 
 const state = {
