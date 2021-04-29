@@ -24,7 +24,6 @@ export default {
 
       var color = "color:#3c4b64" // default
       if( this.open && this.close ){
-        color = "color:red"
         let now = to_sec(moment());
         var open = to_sec(moment(this.open));
         var close = to_sec(moment(this.close));

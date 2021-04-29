@@ -76,14 +76,14 @@ export default {
     }
   },
   computed: { 
-    ...mapState('capi', ['indice_list']),
+    ...mapState('capi_get', ['indice_list']),
   },
   methods: {
   },
   mounted() {
   },
   created() {
-    this.$store.dispatch('capi/fetch_indices').then(() => {})
+    this.$store.dispatch('capi_get/fetch_indices').then(() => {})
   },
   beforeDestroy () {
   }

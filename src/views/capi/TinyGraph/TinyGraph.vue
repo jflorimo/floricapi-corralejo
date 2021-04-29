@@ -24,7 +24,7 @@ export default {
     }
   },
   computed: {
-    ...mapState('capi', ['stock_last_7_days_close']),
+    ...mapState('capi_get', ['stock_last_7_days_close']),
   },
   methods: {
     setPoints() {
@@ -58,7 +58,7 @@ export default {
     
   },
   created() {
-    this.$store.dispatch('capi/fetch_graph', this.marketId).then(() => {
+    this.$store.dispatch('capi_get/fetch_graph', this.marketId).then(() => {
       this.setPoints()
     })
   },

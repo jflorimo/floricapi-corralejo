@@ -72,14 +72,14 @@ export default {
     }
   },
   computed: { 
-    ...mapState('capi', ['stock_list']),
+    ...mapState('capi_get', ['stock_list']),
   },
   methods: {
   },
   mounted() {
   },
   created() {
-    this.$store.dispatch('capi/fetch_stocks').then(() => {})
+    this.$store.dispatch('capi_get/fetch_stocks').then(() => {})
   },
   beforeDestroy () {
   }

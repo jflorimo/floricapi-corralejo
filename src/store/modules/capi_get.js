@@ -43,7 +43,8 @@ const actions = {
     const params = new URLSearchParams();
     params.append('stock_id', stock_id);
     params.append('aggregation', '_15m');
-    return axios.get(MILAGRO_URL + 'graph/', {params}).then(r => {
+    return axios.get(MILAGRO_URL + 'graph/', {params})
+      .then(r => {
         commit('setStockLast7DaysClose', [stock_id, r.data['price_list'], r.data["min"], r.data["max"]])
       })
   }
