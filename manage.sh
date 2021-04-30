@@ -88,7 +88,7 @@ case "$1" in
         ;;
 
     "docker-run")
-        docker-compose -p corralejo-dc -f compose/dev.yml run
+        docker-compose -p corralejo-dc -f compose/dev.yml up
         ;;
 
     "release")
