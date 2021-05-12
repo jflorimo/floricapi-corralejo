@@ -17,8 +17,15 @@
           </div>
         </div>
         
-        <button type="submit" class="btn btn-primary mt-3">Notify Me!</button>
-        
+
+          <button type="submit" class="btn btn-primary mt-3">
+            {{ this.submitText }}
+            <div v-show="spinner_display" class="spinner-border text-light ml-2" role="status">
+              <span class="sr-only">Loading...</span>
+            </div>
+            <CIcon v-show="check_display" :content="checkAltIcon"/>
+          </button>
+
       </form>
 
   </div>
@@ -26,7 +33,7 @@
 
 <script>
 import { mapState } from 'vuex'
-import { cilEnvelopeOpen } from '@coreui/icons'
+import { cilEnvelopeOpen, cilCheckAlt } from '@coreui/icons'
 
 export default { 
   name: 'Crypto',
@@ -37,7 +44,11 @@ export default {
   data () { 
     return {
       envelopIcon: cilEnvelopeOpen,
+      checkAltIcon: cilCheckAlt,
       email: "",
+      submitText: this.$tc('notify_me', 0) + " !",
+      spinner_display: false,
+      check_display: false,
     } 
   },
 
@@ -47,9 +58,13 @@ export default {
 
   methods: {
     submitNotifyMe: function () {
-      this.$store.dispatch("capi_post/post_notify_me_crypto", this.email).then(() => {
-        console.log("isNotifyMeSent: " + this.isNotifyMeSent)
-      })
+      if (this.email && !this.isNotifyMeSent) {
+        this.spinner_display = true
+        this.$store.dispatch("capi_post/post_notify_me_crypto", this.email).then(() => {
+          this.spinner_display = false
+          this.check_display = this.isNotifyMeSent
+        })
+      }
     }
   },
 
@@ -74,5 +89,10 @@ export default {
 .email-input {
   max-width: 400px;
   margin: auto;
+}
+
+.spinner-border {
+  width: 1rem;
+  height: 1rem;
 }
 </style>

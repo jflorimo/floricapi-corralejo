@@ -22,13 +22,9 @@ const actions = {
   post_notify_me_crypto ({commit}, email) {
     return axios.post(ADD_NOTIFY_ME_CRYPTO, { email: email }).then(
         r => {
-          const bla = Boolean(r.status === status.HTTP_201_CREATED)
-          console.log("THEN")
-          console.log(bla)
           commit("set", ["isNotifyMeSent", (r.status === status.HTTP_201_CREATED)])
         }
     ).catch(() => {
-        console.log("CATCH")
         commit("set", ["isNotifyMeSent", false])
     });
   },
