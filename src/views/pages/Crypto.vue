@@ -12,7 +12,7 @@
           <input v-model="email" type="Email" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="email-icon">
           <div class="input-group-append">
             <span class="input-group-text" id="email-icon">
-              <CIcon :content="envelopIcon"/>
+              <CIcon name="cil-envelope-open"/>
             </span>
           </div>
         </div>
@@ -23,7 +23,7 @@
             <div v-show="spinner_display" class="spinner-border text-light ml-2" role="status">
               <span class="sr-only">Loading...</span>
             </div>
-            <CIcon v-show="check_display" :content="checkAltIcon"/>
+            <CIcon v-show="check_display" name="cil-check-alt"/>
           </button>
 
       </form>
@@ -33,7 +33,6 @@
 
 <script>
 import { mapState } from 'vuex'
-import { cilEnvelopeOpen, cilCheckAlt } from '@coreui/icons'
 
 export default { 
   name: 'Crypto',
@@ -43,8 +42,6 @@ export default {
 
   data () { 
     return {
-      envelopIcon: cilEnvelopeOpen,
-      checkAltIcon: cilCheckAlt,
       email: "",
       submitText: this.$tc('notify_me', 0) + " !",
       spinner_display: false,
@@ -53,14 +50,14 @@ export default {
   },
 
   computed: {
-    ...mapState('capi_post', ['isNotifyMeSent']),
+    ...mapState('notify_me', ['isNotifyMeSent']),
   },
 
   methods: {
-    submitNotifyMe: function () {
+    submitNotifyMe() {
       if (this.email && !this.isNotifyMeSent) {
         this.spinner_display = true
-        this.$store.dispatch("capi_post/post_notify_me_crypto", this.email).then(() => {
+        this.$store.dispatch("notify_me/post_notify_me_crypto", this.email).then(() => {
           this.spinner_display = false
           this.check_display = this.isNotifyMeSent
         })

@@ -7,7 +7,8 @@ import VueAxios from 'vue-axios'
 
 import coreui from './modules/coreui'
 import capi_get from './modules/capi_get'
-import capi_post from './modules/capi_post'
+import notify_me from './accounts/notify_me'
+import register from './accounts/register'
 
 Vue.use(Vuex)
 Vue.use(VueAxios, axios)
@@ -16,6 +17,7 @@ export default new Vuex.Store({
   modules: {
     coreui,
     capi_get,
-    capi_post,
+    notify_me,
+    register,
   }
 })

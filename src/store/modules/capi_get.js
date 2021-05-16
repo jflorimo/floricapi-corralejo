@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const MILAGRO_URL = process.env.VUE_APP_MILAGRO_HOST
+const MILAGRO_URL = process.env.VUE_APP_MILAGRO_HOST + "api/"
 
 const state = {
   stock_list: [],

@@ -1,7 +1,7 @@
 import axios from 'axios'
-import { status } from './const.js'
+import { status } from '../const.js'
 
-const MILAGRO_URL = process.env.VUE_APP_MILAGRO_HOST
+const MILAGRO_URL = process.env.VUE_APP_MILAGRO_HOST + "api/"
 const ADD_NOTIFY_ME_CRYPTO = MILAGRO_URL + "me/notify/crypto"
 
 const state = {

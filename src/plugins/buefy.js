@@ -2,11 +2,11 @@ import Vue from 'vue'
 import 'buefy/dist/buefy.css'
 
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faArrowUp, faCaretDown, faCaretUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import { faArrowUp, faCaretDown, faCaretUp, faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
-library.add(faArrowUp, faCaretDown, faCaretUp);
-Vue.component('vue-fontawesome', FontAwesomeIcon);
+library.add(faArrowUp, faCaretDown, faCaretUp, faEye, faEyeSlash);
+Vue.component('FontAwesomeIcon', FontAwesomeIcon);
 
 
 import { ConfigProgrammatic, Table } from 'buefy'
