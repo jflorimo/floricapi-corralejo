@@ -61,23 +61,31 @@ export default {
       submitColor: "success",
       passwordFieldType: "password",
       visibilityIcon: "eye-slash",
-      emailDescription: "Email already exists",
+      emailDescription: "",
     }
   },
   computed: {
     ...mapState("register", ["userId", "email", "register_errored", "email_already_exists"]),
+    ...mapState("login", ["login_errored"])
 
   },
   methods: {
     ...mapMutations("register", ["set_email_already_exists"]),
     register: function () {
-      if (this.input_email && this.input_password) {
+      if (this.input_email && this.input_password)
+      {
         let payload = {"email": this.input_email, "password": this.input_password}
         this.$store.dispatch("register/register", payload).then(() => {
-          if (this.email_already_exists)
+          if (this.email_already_exists) {
             this.emailDescription = "An account with this email address already exists."
+          }
           else if (this.userId && this.email) {
             // TODO get token
+            this.$store.dispatch("login/login", payload).then(() => {
+              if (!this.login_errored) {
+                // this.$router.push('/');
+              }
+            })
           }
         })
       }

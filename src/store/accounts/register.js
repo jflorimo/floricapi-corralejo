@@ -17,7 +17,7 @@ const mutations = {
     set (state, [variable, value]) {
         state[variable] = value
     },
-    set_user_data(state, id, email){
+    set_user_data(state, [id, email]){
         state["userId"] = id
         state["email"] = email
         state["register_errored"] = false
@@ -38,8 +38,7 @@ const actions = {
         return axios.post(REGISTER, { email: email, password: password }).then(
             r => {
                 if (r.status === status.HTTP_201_CREATED) {
-                    console.log("SUCCESS")
-                    commit("set_user_data", r.data["id"], r.data["email"])
+                    commit("set_user_data", [r.data["id"], r.data["email"]])
                 }
                 else {
                     commit("set", ["register_errored", true])
