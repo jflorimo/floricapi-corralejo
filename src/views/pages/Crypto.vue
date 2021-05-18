@@ -36,10 +36,6 @@ import { mapState } from 'vuex'
 
 export default { 
   name: 'Crypto',
-
-  components: {
-  },
-
   data () { 
     return {
       email: "",
@@ -78,18 +74,4 @@ export default {
 </script>
 
 <style>
-.news {
-  margin: auto;
-  text-align: center;
-
-}
-.email-input {
-  max-width: 400px;
-  margin: auto;
-}
-
-.spinner-border {
-  width: 1rem;
-  height: 1rem;
-}
 </style>

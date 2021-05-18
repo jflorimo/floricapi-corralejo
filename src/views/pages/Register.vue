@@ -51,7 +51,6 @@
 <script>
 import { mapState, mapMutations } from 'vuex'
 
-
 export default {
   name: "Register",
   data () {
@@ -80,10 +79,9 @@ export default {
             this.emailDescription = "An account with this email address already exists."
           }
           else if (this.userId && this.email) {
-            // TODO get token
             this.$store.dispatch("login/login", payload).then(() => {
               if (!this.login_errored) {
-                // this.$router.push('/');
+                this.$router.push('/');
               }
             })
           }
