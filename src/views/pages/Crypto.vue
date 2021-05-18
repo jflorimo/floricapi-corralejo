@@ -16,16 +16,13 @@
             </span>
           </div>
         </div>
-        
-
-          <button type="submit" class="btn btn-primary mt-3">
-            {{ this.submitText }}
-            <div v-show="spinner_display" class="spinner-border text-light ml-2" role="status">
-              <span class="sr-only">Loading...</span>
-            </div>
-            <CIcon v-show="check_display" :content="checkAltIco"/>
-          </button>
-<!--name="cil-check-alt"-->
+        <button type="submit" class="btn btn-primary mt-3">
+          {{ this.submitText }}
+          <div v-show="spinner_display" class="spinner-border text-light ml-2" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+          <CIcon v-show="check_display" :content="checkAltIco"/>
+        </button>
       </form>
 
   </div>
