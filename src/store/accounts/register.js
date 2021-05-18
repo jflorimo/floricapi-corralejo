@@ -22,12 +22,10 @@ const mutations = {
         state["email"] = email
         state["register_errored"] = false
         state["email_already_exists"] = false
-    },
-    set_email_already_exists(state, value){ state["email_already_exists"] = value }
+    }
 }
 
 const getters = {
-
 }
 
 const actions = {
