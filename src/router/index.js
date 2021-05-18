@@ -8,7 +8,6 @@ const TheContainer = () => import('@/containers/TheContainer')
 const Dashboard = () => import('@/views/pages/Dashboard')
 const Index = () => import('@/views/pages/Index')
 const Stock = () => import('@/views/pages/Stock')
-const Crypto2 = () => import('@/views/pages/Ctrypto2')
 const Crypto = () => import('@/views/pages/Crypto')
 
 // Other Pages
@@ -56,12 +55,7 @@ function configRoutes () {
           path: '/cryptocurrency/',
           name: 'Crypto',
           component: Crypto
-        },
-        {
-          path: '/cryptocurrency2/',
-          name: 'Crypto2',
-          component: Crypto2
-        },
+        }
       ]
     },
     {
