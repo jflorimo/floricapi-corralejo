@@ -55,7 +55,7 @@ function configRoutes () {
           path: '/cryptocurrency/',
           name: 'Crypto',
           component: Crypto
-        },
+        }
       ]
     },
     {

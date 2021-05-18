@@ -23,9 +23,9 @@
             <div v-show="spinner_display" class="spinner-border text-light ml-2" role="status">
               <span class="sr-only">Loading...</span>
             </div>
-            <CIcon v-show="check_display" name="cil-check-alt"/>
+            <CIcon v-show="check_display" :content="checkAltIco"/>
           </button>
-
+<!--name="cil-check-alt"-->
       </form>
 
   </div>
@@ -33,6 +33,7 @@
 
 <script>
 import { mapState } from 'vuex'
+import { cilCheckAlt } from '@coreui/icons'
 
 export default { 
   name: 'Crypto',
@@ -42,6 +43,7 @@ export default {
 
   data () { 
     return {
+      checkAltIco: cilCheckAlt,
       email: "",
       submitText: this.$tc('notify_me', 0) + " !",
       spinner_display: false,
