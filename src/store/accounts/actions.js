@@ -9,7 +9,7 @@ export default {
         const {data: register_data} = await register(data)
         return register_data
     },
-    async notifyMeCrypto({commit}, data) {
+    async notifyMeCrypto({commit, getters}, data) {
         console.log("notify_me_crypto")
         const response = await notifyMeCrypto(data)
         return response

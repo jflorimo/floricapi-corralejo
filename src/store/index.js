@@ -15,8 +15,7 @@ import accounts from "@/store/accounts"
 Vue.use(Vuex)
 Vue.use(VueAxios, axios)
 
-export default new Vuex.Store({
-  namespaced: true,
+const store = new Vuex.Store({
   modules: {
     coreui,
     capi_get,
@@ -26,3 +25,5 @@ export default new Vuex.Store({
     accounts
   }
 })
+
+export default store
