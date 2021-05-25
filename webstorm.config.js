@@ -1,31 +1,9 @@
+const path = require('path');
+//https://intellij-support.jetbrains.com/hc/en-us/community/posts/360000578284--alias-in-vue-cli-3-projects
 module.exports = {
-  lintOnSave: false,
-  runtimeCompiler: true,
-
-  configureWebpack: {
-    //Necessary to run npm link https://webpack.js.org/configuration/resolve/#resolve-symlinks
-    resolve: {
-       symlinks: false
+  resolve: {
+    alias: {
+      '@': path.join(__dirname, 'src'),
     }
   },
-
-  transpileDependencies: [
-    '@coreui/utils'
-  ],
-
-  devServer: {
-    host: '127.0.0.1',
-    port: 8085,
-    public: 'localhost:8085',
-    clientLogLevel: 'error',
-  },
-
-  pluginOptions: {
-    i18n: {
-      locale: 'fr',
-      fallbackLocale: 'en',
-      localeDir: 'locales',
-      enableInSFC: true
-    }
-  }
-}
+};

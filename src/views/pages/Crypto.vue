@@ -1,13 +1,13 @@
 <template>
   <div class="news">
-      <img 
+      <img
           src="@/assets/icons/logo-flocapi-black.png"
           width="150"
         />
       <h1 class="mt-3"> SOON... TO THE MOON!</h1>
       <p>Get ready! We will be adding Cryptocurrencies soon!</p>
 
-      <form v-on:submit.prevent="submitNotifyMe">
+      <form>
         <div class="input-group email-input">
           <input v-model="email" type="Email" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="email-icon">
           <div class="input-group-append">
@@ -16,7 +16,7 @@
             </span>
           </div>
         </div>
-        <button type="submit" class="btn btn-primary mt-3">
+        <button @click="submitNotifyMe" class="btn btn-primary mt-3">
           {{ this.submitText }}
           <div v-show="spinner_display" class="spinner-border text-light ml-2" role="status">
             <span class="sr-only">Loading...</span>
@@ -29,38 +29,54 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
+
 import { cilCheckAlt } from '@coreui/icons'
 
-export default { 
+export default {
   name: 'Crypto',
 
   components: {
   },
 
-  data () { 
+  data () {
     return {
       checkAltIco: cilCheckAlt,
       email: "",
       submitText: this.$tc('notify_me', 0) + " !",
       spinner_display: false,
       check_display: false,
-    } 
+    }
   },
 
   computed: {
-    ...mapState('notify_me', ['isNotifyMeSent']),
+    // ...mapState('notify_me', ['isNotifyMeSent']),
+    ...mapGetters({
+      isNotifyMeSent: "accounts/isNotifyMeCryptoSent"
+    })
   },
 
   methods: {
+    ...mapActions({
+      sendNotifyMeCrypto: 'accounts/notifyMeCrypto'
+    }),
     submitNotifyMe() {
-      if (this.email && !this.isNotifyMeSent) {
-        this.spinner_display = true
-        this.$store.dispatch("notify_me/post_notify_me_crypto", this.email).then(() => {
-          this.spinner_display = false
-          this.check_display = this.isNotifyMeSent
-        })
-      }
+      console.log("submitClick")
+      console.log(this.isNotifyMeSent)
+
+
+      this.sendNotifyMeCrypto({email: this.email}).then(
+          (r) => { console.log(this.isNotifyMeSent) }
+      ).catch((r) => { console.log(r) })
+
+      console.log(this.isNotifyMeSent)
+      // if (this.email && !this.isNotifyMeSent) {
+      //   this.spinner_display = true
+      //   this.$store.dispatch("notify_me/post_notify_me_crypto", this.email).then(() => {
+      //     this.spinner_display = false
+      //     this.check_display = this.isNotifyMeSent
+      //   })
+      // }
     }
   },
 
