@@ -26,6 +26,5 @@ Notify me crypto updates
 data = {email: email}
  */
 export const notifyMeCrypto = (data) => {
-    console.log("PROUT")
     return axios.post(NOTIFY_ME_CRYPTO_URL, data)
 }

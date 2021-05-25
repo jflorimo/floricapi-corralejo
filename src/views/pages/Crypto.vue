@@ -30,8 +30,8 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
-
 import { cilCheckAlt } from '@coreui/icons'
+import { status } from "@/store/const";
 
 export default {
   name: 'Crypto',
@@ -50,7 +50,6 @@ export default {
   },
 
   computed: {
-    // ...mapState('notify_me', ['isNotifyMeSent']),
     ...mapGetters({
       isNotifyMeSent: "accounts/isNotifyMeCryptoSent"
     })
@@ -58,26 +57,28 @@ export default {
 
   methods: {
     ...mapActions({
-      sendNotifyMeCrypto: 'accounts/notifyMeCrypto'
+      sendNotifyMeCrypto: "accounts/notifyMeCrypto",
+      setNotifyMeCryptoSent: "accounts/setNotifyMeCryptoSent"
     }),
     submitNotifyMe() {
-      console.log("submitClick")
-      console.log(this.isNotifyMeSent)
+      if (!this.email || this.isNotifyMeSent)
+        return
 
-
-
+      this.spinner_display = true
       this.sendNotifyMeCrypto({email: this.email}).then(
-          (r) => { console.log(this.isNotifyMeSent) }
-      ).catch((r) => { console.log(r) })
+          (r) => {
+            this.setNotifyMeCryptoSent((r.status === status.HTTP_201_CREATED))
+            this.spinner_display = false
+            this.check_display = this.isNotifyMeSent
+          }
+      ).catch(
+          () => {
+            this.setNotifyMeCryptoSent(false)
+            this.spinner_display = false
+            this.check_display = this.isNotifyMeSent
+          }
+      )
 
-      console.log(this.isNotifyMeSent)
-      // if (this.email && !this.isNotifyMeSent) {
-      //   this.spinner_display = true
-      //   this.$store.dispatch("notify_me/post_notify_me_crypto", this.email).then(() => {
-      //     this.spinner_display = false
-      //     this.check_display = this.isNotifyMeSent
-      //   })
-      // }
     }
   },
 

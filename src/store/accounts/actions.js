@@ -1,4 +1,5 @@
 import {login, register, notifyMeCrypto} from '@/services/accounts.js'
+import {SET_NOTIFY_ME_CRYPTO_SENT} from "./types";
 
 export default {
     async login({commit}, data) {
@@ -10,8 +11,10 @@ export default {
         return register_data
     },
     async notifyMeCrypto({commit, getters}, data) {
-        console.log("notify_me_crypto")
         const response = await notifyMeCrypto(data)
         return response
-    }
+    },
+    setNotifyMeCryptoSent ({ commit }, boolValue) {
+        commit(SET_NOTIFY_ME_CRYPTO_SENT, boolValue)
+    },
 }

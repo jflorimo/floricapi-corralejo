@@ -6,8 +6,6 @@ const state = () => ({
     isNotifyMeCryptoSent: false
 })
 
-
-
 export default {
     namespaced: true,
     state,
