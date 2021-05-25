@@ -7,7 +7,7 @@
       <h1 class="mt-3"> SOON... TO THE MOON!</h1>
       <p>Get ready! We will be adding Cryptocurrencies soon!</p>
 
-      <form>
+      <form @submit.prevent>
         <div class="input-group email-input">
           <input v-model="email" type="Email" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="email-icon">
           <div class="input-group-append">
@@ -63,6 +63,7 @@ export default {
     submitNotifyMe() {
       console.log("submitClick")
       console.log(this.isNotifyMeSent)
+
 
 
       this.sendNotifyMeCrypto({email: this.email}).then(

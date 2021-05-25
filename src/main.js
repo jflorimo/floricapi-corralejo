@@ -1,10 +1,12 @@
 import 'core-js/stable'
 import './plugins/buefy.js'
 
+import babelPolyfill from 'babel-polyfill'
+
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-import store from './store'
+import store from '@/store'
 
 import CoreuiVue from '@coreui/vue'
 import { iconsSet as icons } from './assets/icons/icons.js'
@@ -12,7 +14,7 @@ import i18n from './plugins/i18n'
 import './plugins/vue_cookies.js'
 
 
-
+Vue.use(babelPolyfill)
 
 
 Vue.config.performance = true
@@ -31,3 +33,4 @@ new Vue({
     App
   }
 })
+
