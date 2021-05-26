@@ -1,20 +1,24 @@
-import {login, register, notifyMeCrypto} from '@/services/accounts.js'
-import {SET_NOTIFY_ME_CRYPTO_SENT} from "./types";
+import {login, notifyMeCrypto, register} from '@/services/accounts.js'
+import {SET_NOTIFY_ME_CRYPTO_SENT, SET_REGISTER_DATA} from "./types";
 
 export default {
-    async login({commit}, data) {
-        const {data: login_data} = await login(data)
-        return login_data
+    async login({commit, getters}, data) {
+        const response = await login(data).then((r) => {
+            let token = r.data["auth_token"]
+            window.$cookies.set("pooclinket", token)
+        })
+        return response
     },
-    async register({commit}, data) {
-        const {data: register_data} = await register(data)
-        return register_data
+    async register({commit, getters}, data) {
+        return await register(data)
     },
     async notifyMeCrypto({commit, getters}, data) {
-        const response = await notifyMeCrypto(data)
-        return response
+        return await notifyMeCrypto(data)
     },
     setNotifyMeCryptoSent ({ commit }, boolValue) {
         commit(SET_NOTIFY_ME_CRYPTO_SENT, boolValue)
     },
+    setRegisterData({commit}, data) {
+        commit(SET_REGISTER_DATA, data)
+    }
 }

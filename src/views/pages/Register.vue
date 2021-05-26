@@ -13,7 +13,7 @@
         <CCol md="6">
           <CCard class="mx-4 mb-0">
             <CCardBody class="p-4">
-              <CForm v-on:submit.prevent="register">
+              <CForm v-on:submit.prevent="createAccount">
                 <h1>Register</h1>
                 <p class="text-muted">Create your account</p>
                 <CInput v-model="input_email"
@@ -49,7 +49,8 @@
 </template>
 
 <script>
-import { mapState, mapMutations } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
+import {status} from "@/store/const";
 
 export default {
   name: "Register",
@@ -60,33 +61,53 @@ export default {
       submitColor: "success",
       passwordFieldType: "password",
       visibilityIcon: "eye-slash",
+      email_already_exists: false,
       emailDescription: "",
     }
   },
   computed: {
-    ...mapState("register", ["userId", "email", "register_errored", "email_already_exists"]),
-    ...mapState("login", ["login_errored"])
-
+    ...mapGetters({
+      userId: "accounts/userId",
+      userEmail: "accounts/userEmail"
+    })
   },
   methods: {
-    ...mapMutations("register", ["set_email_already_exists"]),
-    register: function () {
+    ...mapActions({
+      register: "accounts/register",
+      login: "accounts/login",
+      setRegisterData: "accounts/setRegisterData"
+    }),
+    createAccount: function () {
       if (this.input_email && this.input_password)
       {
         let payload = {"email": this.input_email, "password": this.input_password}
-        this.$store.dispatch("register/register", payload).then(() => {
-          if (this.email_already_exists) {
-            this.emailDescription = "An account with this email address already exists."
+        this.register(payload).then((r) => {
+          if (r.status === status.HTTP_201_CREATED) {
+            this.setRegisterData([r.data["id"], r.data["email"]])
+            this.doLoginAndRedirect(payload)
           }
-          else if (this.userId && this.email) {
-            this.$store.dispatch("login/login", payload).then(() => {
-              if (!this.login_errored) {
-                this.$router.push('/');
-              }
-            })
+        }).catch(error => {
+          if ("email" in error.response.data) {
+            this.email_already_exists = true
           }
         })
+
+        // if (this.email_already_exists) {
+        //   this.emailDescription = "An account with this email address already exists."
+        // }
+        // else if (this.userId && this.email) {
+        //   this.$store.dispatch("login/login", payload).then(() => {
+        //     if (!this.login_errored) {
+        //       this.$router.push('/');
+        //     }
+        //   })
+        // }
       }
+    },
+    doLoginAndRedirect(payload) {
+      this.login(payload).then(() => {
+        this.$router.push('/');
+      })
     },
     switchVisibility() {
       this.passwordFieldType = this.passwordFieldType === "password" ? "text" : "password";
@@ -99,13 +120,16 @@ export default {
       return regex.exec(pwd) !== null
     },
     emailIsValid: function (){
+      console.log("VALIDITY" + this.email_already_exists)
       if (this.email_already_exists) {
-        this.set_email_already_exists(false)
-        this.emailDescription = ""
+        this.email_already_exists = false
+        this.emailDescription = "An account with this email address already exists."
         return false
       }
-      else
+      else {
+        this.emailDescription = ""
         return null
+      }
     }
   }
 }

@@ -7,8 +7,6 @@ import VueAxios from "vue-axios"
 
 import coreui from "./modules/coreui"
 import capi_get from "./modules/capi_get"
-import register from "./accounts/register"
-import login from "./accounts/login"
 import accounts from "@/store/accounts"
 
 Vue.use(Vuex)
@@ -18,8 +16,6 @@ const store = new Vuex.Store({
   modules: {
     coreui,
     capi_get,
-    register,
-    login,
     accounts
   }
 })
