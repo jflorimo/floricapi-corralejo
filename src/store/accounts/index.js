@@ -3,9 +3,12 @@ import actions from './actions'
 import mutations from './mutations'
 
 const state = () => ({
-    isNotifyMeCryptoSent: false,
     userId: null,
     userEmail: null,
+
+    isLogged: false,
+
+    isNotifyMeCryptoSent: false,
 })
 
 export default {

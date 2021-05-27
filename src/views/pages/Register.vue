@@ -1,6 +1,6 @@
 <template>
-  <div class="d-flex align-items-center min-vh-100">
-    <CContainer fluid>
+  <div class="c-app -flex align-items-center min-vh-100">
+    <CContainer>
 
       <CRow class="justify-content-center">
           <img
@@ -91,22 +91,11 @@ export default {
             this.email_already_exists = true
           }
         })
-
-        // if (this.email_already_exists) {
-        //   this.emailDescription = "An account with this email address already exists."
-        // }
-        // else if (this.userId && this.email) {
-        //   this.$store.dispatch("login/login", payload).then(() => {
-        //     if (!this.login_errored) {
-        //       this.$router.push('/');
-        //     }
-        //   })
-        // }
       }
     },
     doLoginAndRedirect(payload) {
       this.login(payload).then(() => {
-        this.$router.push('/');
+        this.$router.push('/')
       })
     },
     switchVisibility() {
@@ -120,7 +109,6 @@ export default {
       return regex.exec(pwd) !== null
     },
     emailIsValid: function (){
-      console.log("VALIDITY" + this.email_already_exists)
       if (this.email_already_exists) {
         this.email_already_exists = false
         this.emailDescription = "An account with this email address already exists."

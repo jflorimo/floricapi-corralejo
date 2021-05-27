@@ -41,14 +41,14 @@
               body-wrapper
             >
               <CCardBody>
-                <h2>Sign up</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <img src="@/assets/icons/logo-flocapi-white.png" width="300"/>
                 <CButton
                   color="light"
                   variant="outline"
                   size="lg"
+                  @click="goToRegister"
                 >
-                  Register Now!
+                  Sign up !
                 </CButton>
               </CCardBody>
             </CCard>
@@ -61,6 +61,10 @@
 
 <script>
 export default {
-  name: 'Login'
+  name: "Login",
+  data() {return {}},
+  methods: {
+    goToRegister(){this.$router.push("/register")}
+  }
 }
 </script>

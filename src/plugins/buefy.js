@@ -12,6 +12,6 @@ Vue.component('FontAwesomeIcon', FontAwesomeIcon);
 import { ConfigProgrammatic, Table } from 'buefy'
 Vue.use(Table)
 ConfigProgrammatic.setOptions({
-	defaultIconComponent: 'vue-fontawesome',
+	defaultIconComponent: 'font-awesome-icon',
     defaultIconPack: 'fas',
 });
