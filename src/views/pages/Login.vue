@@ -9,13 +9,17 @@
                 <CForm>
                   <h1>Login</h1>
                   <p class="text-muted">Sign In to your account</p>
-                  <CInput
-                    placeholder="Username"
-                    autocomplete="username email"
+                  <CAlert color="danger" closeButton v-show="login_error">
+                    Unable to log in with provided credentials.
+                  </CAlert>
+                  <CInput v-model="input_email"
+                    placeholder="Email"
+                    autocomplete="email"
+                    aria-label="Email"
                   >
                     <template #prepend-content><CIcon name="cil-user"/></template>
                   </CInput>
-                  <CInput
+                  <CInput v-model="input_password"
                     placeholder="Password"
                     type="password"
                     autocomplete="curent-password"
@@ -24,7 +28,7 @@
                   </CInput>
                   <CRow>
                     <CCol col="6" class="text-left">
-                      <CButton color="primary" class="px-4">Login</CButton>
+                      <CButton color="primary" class="px-4" @click="doLogin">Login</CButton>
                     </CCol>
                     <CCol col="6" class="text-right">
                       <CButton color="link" class="px-0">Forgot password?</CButton>
@@ -60,11 +64,33 @@
 </template>
 
 <script>
+import {mapActions} from "vuex";
+
 export default {
   name: "Login",
-  data() {return {}},
+  data() {
+    return {
+      input_email: "",
+      input_password: "",
+      login_error: false
+    }
+  },
   methods: {
-    goToRegister(){this.$router.push("/register")}
+    ...mapActions({
+      login: "accounts/login",
+    }),
+    goToRegister(){this.$router.push("/register")},
+    doLogin(){
+      if (!this.input_email || !this.input_password)
+        return
+      this.login_error = false
+      let payload = {"email": this.input_email, "password": this.input_password}
+      this.login(payload).then(() => {
+        this.$router.push('/')
+      }).catch(() => {
+        this.login_error = true
+      })
+    }
   }
 }
 </script>

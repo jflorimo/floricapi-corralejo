@@ -5,6 +5,7 @@ import {status} from "@/store/const";
 export default {
     async login({commit, getters}, data) {
         const response = await login(data).then((r) => {
+            console.log("POST LOGIN: " + r.status)
             const token = r.data["auth_token"]
             window.$cookies.set("pooclinket", token)
         })
