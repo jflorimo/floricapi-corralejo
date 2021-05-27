@@ -28,7 +28,9 @@
                   </CInput>
                   <CRow>
                     <CCol col="6" class="text-left">
-                      <CButton color="primary" class="px-4" @click="doLogin">Login</CButton>
+                      <CButton color="primary" class="px-4" @click="doLogin">
+                        Login <SpinnerButton :show="spinner_display"/>
+                      </CButton>
                     </CCol>
                     <CCol col="6" class="text-right">
                       <CButton color="link" class="px-0">Forgot password?</CButton>
@@ -65,14 +67,17 @@
 
 <script>
 import {mapActions} from "vuex";
+import SpinnerButton from "@/views/capi/SpinnerButton/SpinnerButton";
 
 export default {
   name: "Login",
+  components: {SpinnerButton},
   data() {
     return {
       input_email: "",
       input_password: "",
-      login_error: false
+      login_error: false,
+      spinner_display: false
     }
   },
   methods: {
@@ -84,12 +89,15 @@ export default {
       if (!this.input_email || !this.input_password)
         return
       this.login_error = false
+      this.spinner_display = true
       let payload = {"email": this.input_email, "password": this.input_password}
       this.login(payload).then(() => {
         this.$router.push('/')
       }).catch(() => {
         this.login_error = true
+        this.spinner_display = false
       })
+
     }
   }
 }

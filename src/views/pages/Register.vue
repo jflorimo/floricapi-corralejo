@@ -1,5 +1,5 @@
 <template>
-  <div class="c-app -flex align-items-center min-vh-100">
+  <div class="c-app flex align-items-center min-vh-100">
     <CContainer>
 
       <CRow class="justify-content-center">
@@ -38,7 +38,10 @@
                   </template>
                 </CInput>
 
-                <CButton type="submit" :color="submitColor" block>Create Account</CButton>
+                <CButton type="submit" :color="submitColor" block>
+                  Create Account
+                  <SpinnerButton :show="spinner_display"/>
+                </CButton>
               </CForm>
             </CCardBody>
           </CCard>
@@ -51,9 +54,11 @@
 <script>
 import { mapGetters, mapActions } from 'vuex'
 import {status} from "@/store/const";
+import SpinnerButton from "@/views/capi/SpinnerButton/SpinnerButton";
 
 export default {
   name: "Register",
+  components: {SpinnerButton},
   data () {
     return {
       input_email: "",
@@ -63,6 +68,7 @@ export default {
       visibilityIcon: "eye-slash",
       email_already_exists: false,
       emailDescription: "",
+      spinner_display: false
     }
   },
   computed: {
@@ -80,16 +86,20 @@ export default {
     createAccount: function () {
       if (this.input_email && this.input_password)
       {
+        this.spinner_display = true
         let payload = {"email": this.input_email, "password": this.input_password}
         this.register(payload).then((r) => {
           if (r.status === status.HTTP_201_CREATED) {
             this.setRegisterData([r.data["id"], r.data["email"]])
             this.doLoginAndRedirect(payload)
+          }else {
+            this.spinner_display = false
           }
         }).catch(error => {
           if ("email" in error.response.data) {
             this.email_already_exists = true
           }
+          this.spinner_display = false
         })
       }
     },
