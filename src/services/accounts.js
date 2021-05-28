@@ -2,6 +2,7 @@ import axios from 'axios'
 
 const MILAGRO_URL = process.env.VUE_APP_MILAGRO_HOST
 const LOGIN_URL = MILAGRO_URL + "auth/token/login"
+const LOGOUT_URL = MILAGRO_URL + "auth/token/logout"
 const REGISTER_URL = MILAGRO_URL + "auth/users/"
 const USER_ME = MILAGRO_URL + "auth/users/me"
 const NOTIFY_ME_CRYPTO_URL = MILAGRO_URL + "api/me/notify/crypto"
@@ -12,6 +13,14 @@ data = { email: email, password: password }
  */
 export const login = (data) => {
     return axios.post(LOGIN_URL, data)
+}
+
+/*
+logout
+ */
+export const logout = (token) => {
+    const headers = {headers: {"Authorization": `Token ${token}`}}
+    return axios.post(LOGOUT_URL,{}, headers)
 }
 
 /*

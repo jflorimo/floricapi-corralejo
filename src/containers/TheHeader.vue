@@ -36,13 +36,13 @@
       </CHeaderNavItem>
 
     </CHeaderNav>
-    <span class="c-header-nav" v-show="displayLoginButtons">
-      <CButton class="font-weight-bold btn-sm" @click="goLogin">Log in</CButton>
-    </span>
-    <span class="c-header-nav px-1" v-show="displayLoginButtons">
-      <CButton class="btn-primary font-weight-bold btn-sm px-2" @click="goRegister">Sign up</CButton>
-    </span>
-    <LocaleSwitcher class="c-header-nav px-2"/>
+    <CHeaderNav class="mr-4">
+      <TheHeaderDropdownAccnt v-show="!displayLoginButtons"/>
+      <CButton class="font-weight-bold btn-sm" @click="goLogin" v-show="displayLoginButtons">Log in</CButton>
+      <CButton class="btn-primary font-weight-bold btn-sm" @click="goRegister" v-show="displayLoginButtons">Sign up</CButton>
+      <LocaleSwitcher class="c-header-nav px-2"/>
+    </CHeaderNav>
+
 
 
   </CHeader>
@@ -51,11 +51,13 @@
 <script>
 import { LocaleSwitcher } from '@/views/capi/LocaleSwitcher'
 import {mapActions, mapGetters} from "vuex";
+import TheHeaderDropdownAccnt from "@/containers/TheHeaderDropdownAccnt";
 
 
 export default {
   name: 'TheHeader',
   components: {
+    TheHeaderDropdownAccnt,
     LocaleSwitcher,
   },
   data() {
@@ -73,14 +75,10 @@ export default {
     ...mapActions({
       getUserDetails: "accounts/me",
       setNotifyMeCryptoSent: "accounts/setNotifyMeCryptoSent",
-      updateTokenValidity: "accounts/updateTokenValidity"
+      // updateTokenValidity: "accounts/updateTokenValidity"
     }),
     goRegister(){ this.$router.push('/register') },
     goLogin(){ this.$router.push('/login') },
-  },
-  created() {
-    this.updateTokenValidity()
-    console.log("Token: " + this.isLogged)
   },
 }
 </script>
