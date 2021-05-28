@@ -17,17 +17,17 @@
       <b-table-column field="price" v-bind:label="$tc('stock_price_label', 1)" sortable v-slot="item">
           {{ item.row.currency.symbol }} {{ item.row.current_price }}
       </b-table-column>
-      
+
       <b-table-column field="24h_percentage" label="24h %" sortable v-slot="item">
-          <PercentageChange class="text-right" 
+          <PercentageChange class="text-right"
             v-bind:market="item.row"
             v-bind:compared_to_x_day_ago="1"
           />
       </b-table-column>
 
       <b-table-column field="7d" v-bind:label="$tc('7d', 0) + ' %'" v-slot="item">
-          <PercentageChange class="text-right" 
-            v-bind:market="item.row" 
+          <PercentageChange class="text-right"
+            v-bind:market="item.row"
             v-bind:compared_to_x_day_ago="7"
           />
       </b-table-column>
@@ -46,10 +46,10 @@
 <script>
 import { mapState } from 'vuex'
 
-import { Clock } from '@/views/capi/Clock'
-import { PercentageChange } from '@/views/capi/PercentageChange'
-import { TinyGraph } from '@/views/capi/TinyGraph'
-import { Flag } from '@/views/capi/Flag'
+import { Clock } from '@/components/Clock'
+import { PercentageChange } from '@/components/PercentageChange'
+import { TinyGraph } from '@/components/TinyGraph'
+import { Flag } from '@/components/Flag'
 
 
 export default {
@@ -71,7 +71,7 @@ export default {
       isHoverable: true,
     }
   },
-  computed: { 
+  computed: {
     ...mapState('capi_get', ['stock_list']),
   },
   methods: {

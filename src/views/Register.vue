@@ -54,7 +54,7 @@
 <script>
 import { mapGetters, mapActions } from 'vuex'
 import {status} from "@/store/const";
-import SpinnerButton from "@/views/capi/SpinnerButton/SpinnerButton";
+import SpinnerButton from "@/components/SpinnerButton/SpinnerButton";
 
 export default {
   name: "Register",

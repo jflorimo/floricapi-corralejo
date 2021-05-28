@@ -5,16 +5,16 @@ import Router from 'vue-router'
 const TheContainer = () => import('@/containers/TheContainer')
 
 // Main Pages
-const Dashboard = () => import('@/views/pages/Dashboard')
-const Index = () => import('@/views/pages/Index')
-const Stock = () => import('@/views/pages/Stock')
-const Crypto = () => import('@/views/pages/Crypto')
+const Dashboard = () => import('@/views/Dashboard')
+const Index = () => import('@/views/Index')
+const Stock = () => import('@/views/Stock')
+const Crypto = () => import('@/views/Crypto')
 
 // Other Pages
-const Page404 = () => import('@/views/pages/Page404')
-const Page500 = () => import('@/views/pages/Page500')
-const Login = () => import('@/views/pages/Login')
-const Register = () => import('@/views/pages/Register')
+const Page404 = () => import('@/views/Page404')
+const Page500 = () => import('@/views/Page500')
+const Login = () => import('@/views/Login')
+const Register = () => import('@/views/Register')
 
 Vue.use(Router)
 

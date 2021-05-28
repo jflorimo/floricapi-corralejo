@@ -49,7 +49,7 @@
 </template>
 
 <script>
-import { LocaleSwitcher } from '@/views/capi/LocaleSwitcher'
+import { LocaleSwitcher } from '@/components/LocaleSwitcher'
 import {mapActions, mapGetters} from "vuex";
 import TheHeaderDropdownAccnt from "@/containers/TheHeaderDropdownAccnt";
 
