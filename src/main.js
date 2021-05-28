@@ -15,8 +15,6 @@ import './plugins/vue_cookies.js'
 
 
 Vue.use(babelPolyfill)
-
-
 Vue.config.performance = true
 Vue.use(CoreuiVue)
 Vue.prototype.$log = console.log.bind(console)

@@ -3,8 +3,16 @@
 </template>
 
 <script>
+import {mapActions} from "vuex";
+
 export default {
-  name: 'App'
+  name: 'App',
+  methods: {
+    ...mapActions({updateTokenValidity: "accounts/updateTokenValidity"}),
+  },
+  created() {
+    this.updateTokenValidity()
+  }
 }
 </script>
 
