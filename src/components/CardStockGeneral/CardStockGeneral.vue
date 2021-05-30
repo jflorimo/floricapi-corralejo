@@ -4,6 +4,7 @@
     <bTable
       pack="fas"
       :data="stock_list"
+      :narrowed="true"
       :default-sort-direction="defaultSortDirection"
       :sort-icon="sortIcon"
       :sort-icon-size="sortIconSize"
