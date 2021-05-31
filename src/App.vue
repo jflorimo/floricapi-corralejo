@@ -8,10 +8,14 @@ import {mapActions} from "vuex";
 export default {
   name: 'App',
   methods: {
-    ...mapActions({updateTokenValidity: "accounts/updateTokenValidity"}),
+    ...mapActions({
+      updateTokenValidity: "accounts/updateTokenValidity",
+      fetch_crypto_summary: "crypto/fetch_crypto_summary",
+    }),
   },
   created() {
     this.updateTokenValidity()
+    this.fetch_crypto_summary()
   }
 }
 </script>

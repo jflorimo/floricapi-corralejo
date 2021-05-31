@@ -4,14 +4,14 @@
       light
     >
         <CDropdownItem v-for="locale in locales" :key="locale" @click="switchLocale(locale)">
-          <Flag v-bind:country_code="locale" class="mr-1"/>{{locale}} 
+          <Flag v-bind:country_code="locale" class="mr-1"/>{{locale}}
         </CDropdownItem>
     </CDropdown>
 </template>
 
 
 <script>
-import { Flag } from '@/views/capi/Flag'
+import { Flag } from '@/components/Flag'
 
 export default {
   name: 'LocaleSwitcher',
@@ -38,8 +38,8 @@ export default {
 .dropdwon {
   min-width: 50px;
 }
-.dropdown-item { 
-  vertical-align: middle; 
+.dropdown-item {
+  vertical-align: middle;
   min-width: 50px;
 }
 </style>

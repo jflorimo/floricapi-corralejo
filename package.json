@@ -34,6 +34,7 @@
     "vue": "~2.6.12",
     "vue-axios": "^2.1.5",
     "vue-cookies": "^1.7.4",
+    "vue-cryptoicon": "^0.17.2",
     "vue-i18n": "^8.24.4",
     "vue-router": "^3.5.1",
     "vuex": "~3.5.1"

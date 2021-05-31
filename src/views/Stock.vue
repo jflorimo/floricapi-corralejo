@@ -6,22 +6,20 @@
 </template>
 
 <script>
-import { CardIndiceGeneral } from '@/views/capi/CardIndiceGeneral'
-import { CardStockGeneral } from '@/views/capi/CardStockGeneral'
+import { CardStockGeneral } from '@/components/CardStockGeneral'
 
-export default { 
-  name: 'Home',
+export default {
+  name: 'Stock',
 
   components: {
-    CardIndiceGeneral,
     CardStockGeneral
   },
 
-  data () { 
-    return {} 
+  data () {
+    return {}
   },
 
-  computed: { 
+  computed: {
   },
 
   methods: {

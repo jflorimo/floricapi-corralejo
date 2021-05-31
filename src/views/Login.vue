@@ -67,7 +67,7 @@
 
 <script>
 import {mapActions} from "vuex";
-import SpinnerButton from "@/views/capi/SpinnerButton/SpinnerButton";
+import SpinnerButton from "@/components/SpinnerButton/SpinnerButton";
 
 export default {
   name: "Login",

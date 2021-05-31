@@ -24,15 +24,15 @@
       </CHeaderNavItem>
 
       <CHeaderNavItem class="px-3">
+        <CHeaderNavLink to="/cryptocurrency/">{{ $tc('cryptocurrency', 0) }}</CHeaderNavLink>
+      </CHeaderNavItem>
+
+      <CHeaderNavItem class="px-3">
         <CHeaderNavLink to="/index/">{{ $tc('index', 0) }}</CHeaderNavLink>
       </CHeaderNavItem>
 
       <CHeaderNavItem class="px-3">
         <CHeaderNavLink to="/stock/">{{ $tc('stock', 0) }}</CHeaderNavLink>
-      </CHeaderNavItem>
-
-      <CHeaderNavItem class="px-3">
-        <CHeaderNavLink to="/cryptocurrency/">{{ $tc('cryptocurrency', 0) }}</CHeaderNavLink>
       </CHeaderNavItem>
 
     </CHeaderNav>
@@ -49,7 +49,7 @@
 </template>
 
 <script>
-import { LocaleSwitcher } from '@/views/capi/LocaleSwitcher'
+import { LocaleSwitcher } from '@/components/LocaleSwitcher'
 import {mapActions, mapGetters} from "vuex";
 import TheHeaderDropdownAccnt from "@/containers/TheHeaderDropdownAccnt";
 
@@ -74,8 +74,7 @@ export default {
   methods: {
     ...mapActions({
       getUserDetails: "accounts/me",
-      setNotifyMeCryptoSent: "accounts/setNotifyMeCryptoSent",
-      // updateTokenValidity: "accounts/updateTokenValidity"
+      setNotifyMeCryptoSent: "accounts/setNotifyMeCryptoSent"
     }),
     goRegister(){ this.$router.push('/register') },
     goLogin(){ this.$router.push('/login') },

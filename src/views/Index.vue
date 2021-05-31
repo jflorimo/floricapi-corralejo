@@ -5,19 +5,19 @@
 </template>
 
 <script>
-import { CardIndiceGeneral } from '@/views/capi/CardIndiceGeneral'
-export default { 
+import { CardIndiceGeneral } from '@/components/CardIndiceGeneral'
+export default {
   name: 'Index',
 
   components: {
     CardIndiceGeneral,
   },
 
-  data () { 
-    return {} 
+  data () {
+    return {}
   },
 
-  computed: { 
+  computed: {
   },
 
   methods: {
