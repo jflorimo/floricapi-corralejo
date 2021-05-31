@@ -24,15 +24,15 @@
       </CHeaderNavItem>
 
       <CHeaderNavItem class="px-3">
+        <CHeaderNavLink to="/cryptocurrency/">{{ $tc('cryptocurrency', 0) }}</CHeaderNavLink>
+      </CHeaderNavItem>
+
+      <CHeaderNavItem class="px-3">
         <CHeaderNavLink to="/index/">{{ $tc('index', 0) }}</CHeaderNavLink>
       </CHeaderNavItem>
 
       <CHeaderNavItem class="px-3">
         <CHeaderNavLink to="/stock/">{{ $tc('stock', 0) }}</CHeaderNavLink>
-      </CHeaderNavItem>
-
-      <CHeaderNavItem class="px-3">
-        <CHeaderNavLink to="/cryptocurrency/">{{ $tc('cryptocurrency', 0) }}</CHeaderNavLink>
       </CHeaderNavItem>
 
     </CHeaderNav>
@@ -75,7 +75,6 @@ export default {
     ...mapActions({
       getUserDetails: "accounts/me",
       setNotifyMeCryptoSent: "accounts/setNotifyMeCryptoSent",
-      // updateTokenValidity: "accounts/updateTokenValidity"
     }),
     goRegister(){ this.$router.push('/register') },
     goLogin(){ this.$router.push('/login') },
