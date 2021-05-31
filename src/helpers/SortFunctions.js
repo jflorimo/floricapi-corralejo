@@ -3,6 +3,5 @@ export const asciiSort = (a, b, isAscending) => {
 }
 
 export const numericSort = (a, b, isAscending) => {
-    console.log(a)
     return isAscending ? a > b : a < b
 }
