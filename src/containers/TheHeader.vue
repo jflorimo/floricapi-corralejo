@@ -74,7 +74,7 @@ export default {
   methods: {
     ...mapActions({
       getUserDetails: "accounts/me",
-      setNotifyMeCryptoSent: "accounts/setNotifyMeCryptoSent",
+      setNotifyMeCryptoSent: "accounts/setNotifyMeCryptoSent"
     }),
     goRegister(){ this.$router.push('/register') },
     goLogin(){ this.$router.push('/login') },
