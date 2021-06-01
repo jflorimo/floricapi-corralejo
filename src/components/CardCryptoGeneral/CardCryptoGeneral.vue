@@ -1,12 +1,13 @@
 <template>
   <div>
-<!--    <CCard class="border-0 rounded-0">-->
       <BTable
           hoverable
           :data="crypto_list"
       >
-
-        <b-table-column label="#" v-slot="item" width="10"
+        <b-table-column field="favorite" label="" v-slot="item" width="8">
+          <FavoriteStar :filled="false"/>
+        </b-table-column>
+        <b-table-column field="#" label="#" v-slot="item" width="10"
                         :custom-sort="idSort"
                         sortable
         >
@@ -56,25 +57,24 @@
                         :custom-sort="volume24HSort"
                         sortable
         >
-          {{ item.row.volume_24h }}
+          {{abbreviateNumber(item.row.volume_24h)}}
         </b-table-column>
 
         <b-table-column field="last_7_days" label="Last 7 Days" v-slot="item"></b-table-column>
       </BTable>
-
-
-<!--    </CCard>-->
   </div>
 </template>
 
 <script>
 import {mapGetters} from "vuex";
-import PercentageColor from "@/components/PercentageColor/PercentageColor";
 import {asciiSort, numericSort} from "@/helpers/SortFunctions";
+import {abbreviateNumber} from "@/helpers/Numeric";
+import PercentageColor from "@/components/PercentageColor/PercentageColor";
+import FavoriteStar from "@/components/FavoriteStar/FavoriteStar";
 
 export default {
   name: "CardCryptoGeneral",
-  components: {PercentageColor},
+  components: {FavoriteStar, PercentageColor},
   data() {
     return {
       table_loading: false
@@ -93,6 +93,8 @@ export default {
     change24HSort(itemA, itemB, isAscending) {return numericSort(itemA.percent_change_24h, itemB.percent_change_24h, isAscending)},
     change7DSort(itemA, itemB, isAscending) {return numericSort(itemA.percent_change_7d, itemB.percent_change_7d, isAscending)},
     volume24HSort(itemA, itemB, isAscending) {return numericSort(itemA.volume_24h, itemB.volume_24h, isAscending)},
+
+    abbreviateNumber(value) {return abbreviateNumber(value)},
   },
   created() {
   }
