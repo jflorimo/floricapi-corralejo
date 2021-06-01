@@ -1,23 +1,22 @@
 <template>
   <div>
+    <ul class="nav nav-tabs">
+      <li class="nav-item">
+        <span class="nav-link active">{{ $tc('cryptocurrency', 0) }}</span>
+      </li>
+    </ul>
     <CardCryptoGeneral/>
-    <CardIndiceGeneral/>
-    <CardStockGeneral/>
   </div>
 </template>
 
 <script>
-import { CardCryptoGeneral } from "@/components/CardCryptoGeneral";
-import { CardIndiceGeneral } from '@/components/CardIndiceGeneral'
-import { CardStockGeneral } from '@/components/CardStockGeneral'
+import { CardCryptoGeneral } from "@/components/CardCryptoGeneral"
 
 export default {
   name: 'Home',
 
   components: {
-    CardCryptoGeneral,
-    CardIndiceGeneral,
-    CardStockGeneral
+    CardCryptoGeneral
   },
 
   data () {

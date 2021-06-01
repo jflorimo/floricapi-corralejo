@@ -1,11 +1,6 @@
 <template>
   <div>
-    <ul class="nav nav-tabs">
-      <li class="nav-item">
-        <span class="nav-link active">{{ $tc('cryptocurrency', 0) }}</span>
-      </li>
-    </ul>
-    <CCard class="border-top-0 rounded-0">
+<!--    <CCard class="border-0 rounded-0">-->
       <BTable
           hoverable
           :data="crypto_list"
@@ -68,7 +63,7 @@
       </BTable>
 
 
-    </CCard>
+<!--    </CCard>-->
   </div>
 </template>
 
