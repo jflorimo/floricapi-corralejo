@@ -29,3 +29,19 @@ export const abbreviateNumber = (value) => {
     }
     return newValue;
 }
+/*
+Number with commas
+https://stackoverflow.com/questions/2901102/how-to-print-a-number-with-commas-as-thousands-separators-in-javascript
+example:
+0                           "0"
+100                       "100"
+1000                    "1,000"
+10000                  "10,000"
+100000                "100,000"
+1000000             "1,000,000"
+10000000           "10,000,000"
+100000.123456  "100,000.123456"
+ */
+export const numberWithCommas = (value) => {
+    return value.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+}

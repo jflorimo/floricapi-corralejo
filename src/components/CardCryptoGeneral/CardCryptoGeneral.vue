@@ -4,7 +4,7 @@
           hoverable
           :data="crypto_list"
       >
-        <b-table-column field="favorite" label="" v-slot="item" width="8">
+        <b-table-column field="favorite" label="" v-slot="item" width="5">
           <FavoriteStar :filled="false"/>
         </b-table-column>
         <b-table-column field="#" label="#" v-slot="item" width="10"
@@ -57,10 +57,12 @@
                         :custom-sort="volume24HSort"
                         sortable
         >
-          {{abbreviateNumber(item.row.volume_24h)}}
+          ${{abbreviateNumber(item.row.volume_24h)}}
         </b-table-column>
 
-        <b-table-column field="last_7_days" label="Last 7 Days" v-slot="item"></b-table-column>
+        <b-table-column field="last_7_days" label="Last 7 Days" v-slot="item">
+          <CryptoTinyGraph :pointList="item.row.graph" :lastPoint="parseFloat(item.row.price)"/>
+        </b-table-column>
       </BTable>
   </div>
 </template>
@@ -68,13 +70,14 @@
 <script>
 import {mapGetters} from "vuex";
 import {asciiSort, numericSort} from "@/helpers/SortFunctions";
-import {abbreviateNumber} from "@/helpers/Numeric";
+import {numberWithCommas} from "@/helpers/Numeric";
 import PercentageColor from "@/components/PercentageColor/PercentageColor";
 import FavoriteStar from "@/components/FavoriteStar/FavoriteStar";
+import CryptoTinyGraph from "@/components/TinyGraph/CryptoTinyGraph";
 
 export default {
   name: "CardCryptoGeneral",
-  components: {FavoriteStar, PercentageColor},
+  components: {CryptoTinyGraph, FavoriteStar, PercentageColor},
   data() {
     return {
       table_loading: false
@@ -94,7 +97,7 @@ export default {
     change7DSort(itemA, itemB, isAscending) {return numericSort(itemA.percent_change_7d, itemB.percent_change_7d, isAscending)},
     volume24HSort(itemA, itemB, isAscending) {return numericSort(itemA.volume_24h, itemB.volume_24h, isAscending)},
 
-    abbreviateNumber(value) {return abbreviateNumber(value)},
+    abbreviateNumber(value) {return numberWithCommas(value)},
   },
   created() {
   }
