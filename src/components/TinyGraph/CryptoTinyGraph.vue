@@ -16,6 +16,7 @@ export default {
   props: {
     pointList: Array,
     lastPoint: Number,
+    colorLine: String,
   },
   data () {
     return {
@@ -53,6 +54,10 @@ export default {
       }
       this.dataPoints = points
 
+      if (this.colorLine) {
+        this.stroke_color = this.colorLine
+        return
+      }
       if (tmpList[len-1] > tmpList[0])
         this.stroke_color = "#2eb85c"
       else if (tmpList[len-1] < tmpList[0])

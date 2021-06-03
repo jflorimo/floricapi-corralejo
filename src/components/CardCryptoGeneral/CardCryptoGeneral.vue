@@ -3,6 +3,7 @@
       <BTable
           hoverable
           :data="crypto_list"
+          :row-class="(row, index) => 'capi-row'"
       >
         <b-table-column field="favorite" label="" v-slot="item" width="5">
           <FavoriteStar :filled="false"/>
@@ -61,7 +62,10 @@
         </b-table-column>
 
         <b-table-column field="last_7_days" label="Last 7 Days" v-slot="item">
-          <CryptoTinyGraph :pointList="item.row.graph" :lastPoint="parseFloat(item.row.price)"/>
+          <CryptoTinyGraph
+              :pointList="item.row.graph"
+              :lastPoint="parseFloat(item.row.price)"
+              :colorLine="getGraphColor(item.row.percent_change_7d)"/>
         </b-table-column>
       </BTable>
   </div>
@@ -98,12 +102,19 @@ export default {
     volume24HSort(itemA, itemB, isAscending) {return numericSort(itemA.volume_24h, itemB.volume_24h, isAscending)},
 
     abbreviateNumber(value) {return numberWithCommas(value)},
+    getGraphColor(value) {
+      return (value < 0)? "#e55353" : "#2eb85c"
+    }
   },
   created() {
   }
 }
 </script>
 
-<style scoped>
-
+<style>
+.capi-row td {
+  padding-top: 1px;
+  padding-bottom: 1px;
+  vertical-align: middle;
+}
 </style>
