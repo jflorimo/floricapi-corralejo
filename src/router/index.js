@@ -9,6 +9,8 @@ const Dashboard = () => import('@/views/Dashboard')
 const Index = () => import('@/views/Index')
 const Stock = () => import('@/views/Stock')
 const Crypto = () => import('@/views/Crypto')
+const CryptoAsset = () => import('@/views/CryptoAsset')
+
 
 // Other Pages
 const Page404 = () => import('@/views/Page404')
@@ -54,7 +56,12 @@ function configRoutes () {
         {
           path: '/cryptocurrency/',
           name: 'Crypto',
-          component: Crypto
+          component: Crypto,
+        },
+        {
+          path: '/cryptocurrency/:fcid',
+          name: 'CryptoAsset',
+          component: CryptoAsset,
         }
       ]
     },
@@ -69,34 +76,9 @@ function configRoutes () {
       component: Register
     },
     {
-      path: '/pages',
-      redirect: '/pages/404',
-      name: 'Pages',
-      component: {
-        render (c) { return c('router-view') }
-      },
-      children: [
-        {
-          path: '404',
-          name: 'Page404',
-          component: Page404
-        },
-        {
-          path: '500',
-          name: 'Page500',
-          component: Page500
-        },
-        {
-          path: 'login',
-          name: 'Login',
-          component: Login
-        },
-        {
-          path: 'register',
-          name: 'Register',
-          component: Register
-        }
-      ]
+      path: '*',
+      name: 'Error',
+      component: Page404
     }
   ]
 }

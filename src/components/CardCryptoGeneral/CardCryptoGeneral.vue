@@ -2,7 +2,10 @@
   <div>
       <BTable
           hoverable
+          selectable
+          @select="selectedRow"
           :data="crypto_list"
+          :row-class="(row, index) => 'capi-row'"
       >
         <b-table-column field="favorite" label="" v-slot="item" width="5">
           <FavoriteStar :filled="false"/>
@@ -18,7 +21,9 @@
                         :custom-sort="nameSort"
                         sortable
         >
-          <Cryptoicon :symbol="item.row.symbol" :size="24" generic/> {{ item.row.name }}
+          <a :href='"/cryptocurrency/" + item.row.fcid'>
+            <Cryptoicon :symbol="item.row.symbol" :size="24" generic/> {{ item.row.name }}
+          </a>
         </b-table-column>
 
         <b-table-column field="symbol" label="" v-slot="item">
@@ -61,7 +66,10 @@
         </b-table-column>
 
         <b-table-column field="last_7_days" label="Last 7 Days" v-slot="item">
-          <CryptoTinyGraph :pointList="item.row.graph" :lastPoint="parseFloat(item.row.price)"/>
+          <CryptoTinyGraph
+              :pointList="item.row.graph"
+              :lastPoint="parseFloat(item.row.price)"
+              :colorLine="getGraphColor(item.row.percent_change_7d)"/>
         </b-table-column>
       </BTable>
   </div>
@@ -80,7 +88,6 @@ export default {
   components: {CryptoTinyGraph, FavoriteStar, PercentageColor},
   data() {
     return {
-      table_loading: false
     }
   },
   computed: {
@@ -98,12 +105,23 @@ export default {
     volume24HSort(itemA, itemB, isAscending) {return numericSort(itemA.volume_24h, itemB.volume_24h, isAscending)},
 
     abbreviateNumber(value) {return numberWithCommas(value)},
+    getGraphColor(value) {
+      return (value < 0)? "#e55353" : "#2eb85c"
+    },
+    selectedRow(item){
+      this.$router.push({ name: 'CryptoAsset', params: { fcid: item.fcid } })
+    }
   },
   created() {
   }
 }
 </script>
 
-<style scoped>
-
+<style>
+.capi-row td {
+  padding-top: 1px;
+  padding-bottom: 1px;
+  vertical-align: middle;
+  cursor: pointer;
+}
 </style>
