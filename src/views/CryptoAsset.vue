@@ -2,23 +2,43 @@
   <div>
     <Page404 v-if="displayNotFound"/>
     <div v-else>
-      <CryptoNavigation :name="coinData.name"/>
-      <CryptoNameIcon :name="coinData.name" :symbol="coinData.symbol"/>
-      <CryptoPriceDetail :coinData="coinData"/>
-      <div>
-        <ul>
-          <li>max_supply: {{coinData.max_supply}}</li>
-          <li>circulating_supply: {{coinData.circulating_supply}}</li>
-          <li>total_supply: {{coinData.total_supply}}</li>
-          <li>volume_24h: {{coinData.volume_24h}}</li>
-          <li>percent_change_1h: {{coinData.percent_change_1h}}</li>
-          <li>percent_change_24h: {{coinData.percent_change_24h}}</li>
-          <li>percent_change_7d: {{coinData.percent_change_7d}}</li>
-          <li>market_cap: {{coinData.market_cap}}</li>
-          <li>last_updated: {{coinData.last_updated}}</li>
-        </ul>
-      </div>
-      jfoiwjefoiwjef ICI CEST BIEN
+
+      <CContainer>
+        <CRow>
+          <CCol>
+            <CryptoNavigation :name="coinData.name"/>
+          </CCol>
+        </CRow>
+
+        <CRow>
+          <CCol sm="4" class="mt-auto">
+            <CryptoNameIcon :name="coinData.name" :symbol="coinData.symbol"/>
+          </CCol>
+          <CCol sm="4">
+            <CryptoPriceDetail :coinData="coinData"/>
+          </CCol>
+        </CRow>
+
+        <CRow class="mt-5 border-top">
+          <CCol sm="3">
+            <CryptoCirculatingSupply :coinData="coinData"/>
+          </CCol>
+          <CCol sm="3">
+            <CryptoVolume24h :coinData="coinData"/>
+          </CCol>
+          <CCol sm="3">
+            <CryptoPriceChange :coinData="coinData"/>
+          </CCol>
+          <CCol sm="3">
+            <ul>
+              <li>market_cap: {{coinData.market_cap}}</li>
+              <li>last_updated: {{coinData.last_updated}}</li>
+            </ul>
+          </CCol>
+        </CRow>
+
+      </CContainer>
+
     </div>
   </div>
 </template>
@@ -29,10 +49,15 @@ import Page404 from "@/views/Page404";
 import CryptoNameIcon from "@/components/CryptoDetail/CryptoNameIcon";
 import CryptoNavigation from "@/components/CryptoDetail/CryptoNavigation";
 import CryptoPriceDetail from "@/components/CryptoDetail/CryptoPriceDetail";
+import CryptoCirculatingSupply from "@/components/CryptoDetail/CryptoCirculatingSupply";
+import CryptoVolume24h from "@/components/CryptoDetail/CryptoVolume24h";
+import CryptoPriceChange from "@/components/CryptoDetail/CryptoPriceChange";
 
 export default {
   name: "CryptoAsset",
-  components: {CryptoPriceDetail, CryptoNavigation, CryptoNameIcon, Page404},
+  components: {
+    CryptoPriceChange,
+    CryptoVolume24h, CryptoCirculatingSupply, CryptoPriceDetail, CryptoNavigation, CryptoNameIcon, Page404},
   props: {
     fcid: String,
   },
@@ -47,50 +72,23 @@ export default {
   },
   methods: {
     ...mapActions({
-      fetch_detail: 'crypto/synched_get_crypto_detail'
+      fetch_detail: 'crypto/fetch_crypto_detail'
     }),
     updatePageTitle() {
       document.title = this.coinData.name + " | Flocapi"
     },
-    async yolo(){
-      console.log("YOLO")
-      // try {
-      //   const {data} = await this.fetch_detail(this.$route.params.fcid)
-      //   console.log(data)
-      //   this.coinData = data ? data : {}
-      //
-      // } catch (e) {
-      //   console.log("ERROR ICI: ", e)
-      //   this.displayNotFound = true
-      // }
-      await this.fetch_detail(this.$route.params.fcid).then((r) => {
-          console.log(r.data)
-          this.coinData = r.data ? r.data : {}
-      }).catch((e) => {
-          console.log("ERROR ICI: ", e)
-          this.displayNotFound = true
-      })
+    async get_detail_or_404(){
+      try {
+        const {data} = await this.fetch_detail(this.$route.params.fcid)
+        this.coinData = data
+        this.displayNotFound = false
+      } catch (e) {
+        this.displayNotFound = true
+      }
     }
   },
-  mounted() {
-    console.log("fwfewefwef")
-  },
   created() {
-    this.yolo()
-
-    // console.log(this.displayNotFound)
-    // this.fetch_detail(this.$route.params.fcid).then((r) => {
-    //   console.log("DAT: " + r.data)
-    //   this.coinData = r.data
-    //   this.updatePageTitle()
-    // }).catch( () => {
-    //   console.log('error errr')
-    //
-    //
-    //   this.displayNotFound = true
-    //
-    //   console.log(this.displayNotFound)
-    // })
+    this.get_detail_or_404()
   }
 }
 </script>

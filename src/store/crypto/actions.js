@@ -8,7 +8,7 @@ export default {
             commit(SET_CRYPTO_LIST, r.data)
         })
     },
-    async synched_get_crypto_detail({commit, getters}, fcid){
+    async fetch_crypto_detail({commit, getters}, fcid){
         return await get_crypto_detail(fcid)
     },
 }
