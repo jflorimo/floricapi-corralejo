@@ -1,23 +1,25 @@
 <template>
-  <Page404 v-if="displayNotFound"/>
-  <div v-else>
-    <CryptoNavigation :name="coinData.name"/>
-    <CryptoNameIcon :name="coinData.name" :symbol="coinData.symbol"/>
-    <CryptoPriceDetail :coinData="coinData"/>
-    <div>
-      <ul>
-        <li>max_supply: {{this.coinData.max_supply}}</li>
-        <li>circulating_supply: {{this.coinData.circulating_supply}}</li>
-        <li>total_supply: {{this.coinData.total_supply}}</li>
-        <li>volume_24h: {{this.coinData.volume_24h}}</li>
-        <li>percent_change_1h: {{this.coinData.percent_change_1h}}</li>
-        <li>percent_change_24h: {{this.coinData.percent_change_24h}}</li>
-        <li>percent_change_7d: {{this.coinData.percent_change_7d}}</li>
-        <li>market_cap: {{this.coinData.market_cap}}</li>
-        <li>last_updated: {{this.coinData.last_updated}}</li>
-      </ul>
+  <div>
+    <Page404 v-if="displayNotFound"/>
+    <div v-else>
+      <CryptoNavigation :name="coinData.name"/>
+      <CryptoNameIcon :name="coinData.name" :symbol="coinData.symbol"/>
+      <CryptoPriceDetail :coinData="coinData"/>
+      <div>
+        <ul>
+          <li>max_supply: {{coinData.max_supply}}</li>
+          <li>circulating_supply: {{coinData.circulating_supply}}</li>
+          <li>total_supply: {{coinData.total_supply}}</li>
+          <li>volume_24h: {{coinData.volume_24h}}</li>
+          <li>percent_change_1h: {{coinData.percent_change_1h}}</li>
+          <li>percent_change_24h: {{coinData.percent_change_24h}}</li>
+          <li>percent_change_7d: {{coinData.percent_change_7d}}</li>
+          <li>market_cap: {{coinData.market_cap}}</li>
+          <li>last_updated: {{coinData.last_updated}}</li>
+        </ul>
+      </div>
+      jfoiwjefoiwjef ICI CEST BIEN
     </div>
-    jfoiwjefoiwjef ICI CEST BIEN
   </div>
 </template>
 
@@ -52,22 +54,29 @@ export default {
     },
     async yolo(){
       console.log("YOLO")
-      try {
-        const {data} = await this.fetch_detail(this.$route.params.fcid)
-        console.log(data)
-        this.coinData = data ? data : {}
-
-      } catch (e) {
-        console.log("ERROR ICI: ", e)
-        this.displayNotFound = true
-      }
+      // try {
+      //   const {data} = await this.fetch_detail(this.$route.params.fcid)
+      //   console.log(data)
+      //   this.coinData = data ? data : {}
+      //
+      // } catch (e) {
+      //   console.log("ERROR ICI: ", e)
+      //   this.displayNotFound = true
+      // }
+      await this.fetch_detail(this.$route.params.fcid).then((r) => {
+          console.log(r.data)
+          this.coinData = r.data ? r.data : {}
+      }).catch((e) => {
+          console.log("ERROR ICI: ", e)
+          this.displayNotFound = true
+      })
     }
   },
   mounted() {
     console.log("fwfewefwef")
-    this.yolo()
   },
   created() {
+    this.yolo()
 
     // console.log(this.displayNotFound)
     // this.fetch_detail(this.$route.params.fcid).then((r) => {
