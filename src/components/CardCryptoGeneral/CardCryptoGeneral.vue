@@ -2,8 +2,11 @@
   <div>
       <BTable
           hoverable
+          selectable
+          @select="selectedRow"
           :data="crypto_list"
           :row-class="(row, index) => 'capi-row'"
+
       >
         <b-table-column field="favorite" label="" v-slot="item" width="5">
           <FavoriteStar :filled="false"/>
@@ -19,7 +22,9 @@
                         :custom-sort="nameSort"
                         sortable
         >
-          <Cryptoicon :symbol="item.row.symbol" :size="24" generic/> {{ item.row.name }}
+          <a :href='"/cryptocurrency/" + item.row.fcid'>
+            <Cryptoicon :symbol="item.row.symbol" :size="24" generic/> {{ item.row.name }}
+          </a>
         </b-table-column>
 
         <b-table-column field="symbol" label="" v-slot="item">
@@ -84,7 +89,6 @@ export default {
   components: {CryptoTinyGraph, FavoriteStar, PercentageColor},
   data() {
     return {
-      table_loading: false
     }
   },
   computed: {
@@ -104,6 +108,9 @@ export default {
     abbreviateNumber(value) {return numberWithCommas(value)},
     getGraphColor(value) {
       return (value < 0)? "#e55353" : "#2eb85c"
+    },
+    selectedRow(item){
+      this.$router.push({ name: 'CryptoAsset', params: { fcid: item.fcid } })
     }
   },
   created() {
@@ -116,5 +123,6 @@ export default {
   padding-top: 1px;
   padding-bottom: 1px;
   vertical-align: middle;
+  cursor: pointer;
 }
 </style>
