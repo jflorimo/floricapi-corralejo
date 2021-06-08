@@ -6,7 +6,6 @@
           @select="selectedRow"
           :data="crypto_list"
           :row-class="(row, index) => 'capi-row'"
-
       >
         <b-table-column field="favorite" label="" v-slot="item" width="5">
           <FavoriteStar :filled="false"/>
