@@ -12,7 +12,7 @@
 
         <CRow>
           <CCol sm="4" class="mt-auto">
-            <CryptoNameIcon :name="coinData.name" :symbol="coinData.symbol" class="border"/>
+            <CryptoNameIcon :name="coinData.name" :symbol="coinData.symbol"/>
           </CCol>
           <CCol sm="4">
             <CryptoPriceDetail :coinData="coinData"/>
