@@ -1,10 +1,10 @@
 <template>
   <div>
-    Price Change
+    <h6 class="text-muted">Price Change <FontAwesomeIcon :icon="['fa', 'info-circle']"/></h6>
     <ul>
-      <li>percent_change_1h: {{coinData.percent_change_1h}}</li>
-      <li>percent_change_24h: {{coinData.percent_change_24h}}</li>
-      <li>percent_change_7d: {{coinData.percent_change_7d}}</li>
+      <li><strong>percent_change_1h</strong>: {{coinData.percent_change_1h}}</li>
+      <li><strong>percent_change_24h</strong>: {{coinData.percent_change_24h}}</li>
+      <li><strong>percent_change_7d</strong>: {{coinData.percent_change_7d}}</li>
     </ul>
   </div>
 </template>

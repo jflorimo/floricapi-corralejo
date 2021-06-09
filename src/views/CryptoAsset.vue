@@ -12,28 +12,27 @@
 
         <CRow>
           <CCol sm="4" class="mt-auto">
-            <CryptoNameIcon :name="coinData.name" :symbol="coinData.symbol"/>
+            <CryptoNameIcon :name="coinData.name" :symbol="coinData.symbol" class="border"/>
           </CCol>
           <CCol sm="4">
             <CryptoPriceDetail :coinData="coinData"/>
           </CCol>
         </CRow>
 
-        <CRow class="mt-5 border-top">
+        <CRow class="my-4 border-top"></CRow>
+
+        <CRow>
           <CCol sm="3">
-            <CryptoCirculatingSupply :coinData="coinData"/>
+            <CryptoPriceChange :coinData="coinData"/>
           </CCol>
           <CCol sm="3">
             <CryptoVolume24h :coinData="coinData"/>
           </CCol>
           <CCol sm="3">
-            <CryptoPriceChange :coinData="coinData"/>
+            <CryptoCirculatingSupply :coinData="coinData"/>
           </CCol>
           <CCol sm="3">
-            <ul>
-              <li>market_cap: {{coinData.market_cap}}</li>
-              <li>last_updated: {{coinData.last_updated}}</li>
-            </ul>
+            <CryptoOther :coinData="coinData"/>
           </CCol>
         </CRow>
 
@@ -52,10 +51,12 @@ import CryptoPriceDetail from "@/components/CryptoDetail/CryptoPriceDetail";
 import CryptoCirculatingSupply from "@/components/CryptoDetail/CryptoCirculatingSupply";
 import CryptoVolume24h from "@/components/CryptoDetail/CryptoVolume24h";
 import CryptoPriceChange from "@/components/CryptoDetail/CryptoPriceChange";
+import CryptoOther from "@/components/CryptoDetail/CryptoOther";
 
 export default {
   name: "CryptoAsset",
   components: {
+    CryptoOther,
     CryptoPriceChange,
     CryptoVolume24h, CryptoCirculatingSupply, CryptoPriceDetail, CryptoNavigation, CryptoNameIcon, Page404},
   props: {

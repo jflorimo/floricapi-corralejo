@@ -1,8 +1,8 @@
 <template>
   <div>
-    Volume (24h)
+    <h6 class="text-muted">Volume (24h) <FontAwesomeIcon :icon="['fa', 'info-circle']"/></h6>
     <ul>
-      <li>volume_24h: {{coinData.volume_24h}}</li>
+      <li><strong>volume_24h</strong>: {{coinData.volume_24h}}</li>
     </ul>
   </div>
 </template>
