@@ -19,7 +19,4 @@ export default {
 </script>
 
 <style>
-.card{
-  background-color: #F8FDFA;
-}
 </style>
