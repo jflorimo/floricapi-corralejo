@@ -1,12 +1,11 @@
 <template>
   <div>
-    Circulating Supply
+  <h6 class="text-muted">Circulating Supply <FontAwesomeIcon :icon="['fa', 'info-circle']"/></h6>
     <ul>
-      <li>max_supply: {{coinData.max_supply}}</li>
-      <li>circulating_supply: {{coinData.circulating_supply}}</li>
-      <li>total_supply: {{coinData.total_supply}}</li>
+      <li><strong>max_supply</strong>: {{coinData.max_supply}}</li>
+      <li><strong>circulating_supply</strong>: {{coinData.circulating_supply}}</li>
+      <li><strong>total_supply</strong>: {{coinData.total_supply}}</li>
     </ul>
-
   </div>
 </template>
 

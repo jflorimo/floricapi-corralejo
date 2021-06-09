@@ -4,10 +4,10 @@ import 'buefy/dist/buefy.css'
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import {
-    faArrowUp, faCaretDown, faCaretUp, faEye, faEyeSlash, faUserCircle, faStar
+    faArrowUp, faCaretDown, faCaretUp, faEye, faEyeSlash, faUserCircle, faStar, faInfoCircle
 } from "@fortawesome/free-solid-svg-icons";
 
-library.add(faArrowUp, faCaretDown, faCaretUp, faEye, faEyeSlash, faUserCircle, faStar);
+library.add(faArrowUp, faCaretDown, faCaretUp, faEye, faEyeSlash, faUserCircle, faStar, faInfoCircle);
 Vue.component('FontAwesomeIcon', FontAwesomeIcon);
 
 
